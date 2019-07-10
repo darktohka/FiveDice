@@ -42,16 +42,7 @@ public class GameActivityListener implements View.OnClickListener {
             return;
         }
 
-        for (Dice die : activity.getDice()) {
-            die.rollDice();
-            die.enable();
-        }
-
-        activity.decrementRerolls();
-
-        if (!activity.hasRerollsLeft() || activity.isAllDiceLocked()) {
-            activity.endMatch();
-        }
+        activity.rollDice();
     }
     //endregion
 }

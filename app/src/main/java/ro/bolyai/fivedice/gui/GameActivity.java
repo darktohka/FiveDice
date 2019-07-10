@@ -3,6 +3,7 @@ package ro.bolyai.fivedice.gui;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Dimension;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -52,6 +53,9 @@ public class GameActivity extends AppCompatActivity {
     private int rerollsLeft;
 
     private boolean showingDice;
+    private boolean rollingDice;
+
+    private Handler timerHandler;
     //endregion
 
     //region 2. Lifecycle
@@ -65,12 +69,20 @@ public class GameActivity extends AppCompatActivity {
         txtRerolls = findViewById(R.id.txtRerolls);
         btnRoll = findViewById(R.id.btnRoll);
 
+        timerHandler = new Handler();
+
         if (savedInstanceState == null) {
             initializeGame();
         }
 
         gameActivityListener = new GameActivityListener(this);
         btnRoll.setOnClickListener(gameActivityListener);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        timerHandler.removeCallbacksAndMessages(null);
     }
 
     private void initializeGame() {
@@ -118,7 +130,10 @@ public class GameActivity extends AppCompatActivity {
 
         setCurrentRound(1);
         setCurrentPlayer(PLAYER_ONE);
-        disableDice();
+        hideDiceKeep();
+
+        showingDice = false;
+        rollingDice = false;
     }
 
     public int getCurrentRound() {
@@ -205,23 +220,31 @@ public class GameActivity extends AppCompatActivity {
         this.showingDice = showingDice;
 
         if (showingDice) {
-            disableDice();
+            hideDiceKeep();
             btnRoll.setText(getString(R.string.btn_roll_next));
         } else {
-            enableDice();
+            showDiceKeep();
             btnRoll.setText(getString(R.string.btn_roll));
         }
     }
 
-    public void disableDice() {
+    public boolean isRollingDice() {
+        return rollingDice;
+    }
+
+    public void setRollingDice(boolean rollingDice) {
+        this.rollingDice = rollingDice;
+    }
+
+    public void hideDiceKeep() {
         for (Dice die : dice) {
-            die.disable();
+            die.hideKeepButton();
         }
     }
 
-    public void enableDice() {
+    public void showDiceKeep() {
         for (Dice die : dice) {
-            die.enable();
+            die.showKeepButton();
         }
     }
 
@@ -265,8 +288,52 @@ public class GameActivity extends AppCompatActivity {
         for (Dice die : dice) {
             die.setValue(HIDDEN_DIE);
             die.setLocked(false);
-            die.disable();
+            die.hideKeepButton();
         }
+    }
+
+    public void rollDice() {
+        if (isRollingDice()) {
+            return;
+        }
+
+        rollingDice = true;
+        btnRoll.setEnabled(false);
+
+        for (Dice die : dice) {
+            die.setEnabled(false);
+        }
+
+        timerHandler.postDelayed(new Runnable() {
+            private int count = 10;
+
+            @Override
+            public void run() {
+                count--;
+
+                for (Dice die : dice) {
+                    die.rollDice();
+                }
+
+                if (count > 0) {
+                    timerHandler.postDelayed(this, 75);
+                } else {
+                    rollingDice = false;
+                    btnRoll.setEnabled(true);
+
+                    for (Dice die : dice) {
+                        die.showKeepButton();
+                        die.setEnabled(true);
+                    }
+
+                    decrementRerolls();
+
+                    if (!hasRerollsLeft() || isAllDiceLocked()) {
+                        endMatch();
+                    }
+                }
+            }
+        }, 0);
     }
 
     public void endMatch() {

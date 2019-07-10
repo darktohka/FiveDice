@@ -116,14 +116,19 @@ public class Dice extends Model {
         btnKeep.setOnClickListener(listener);
     }
 
-    public void disable() {
+    public void hideKeepButton() {
         btnKeep.setVisibility(View.GONE);
         imgDice.setEnabled(false);
     }
 
-    public void enable() {
+    public void showKeepButton() {
         btnKeep.setVisibility(View.VISIBLE);
         imgDice.setEnabled(true);
+    }
+
+    public void setEnabled(boolean enabled) {
+        btnKeep.setEnabled(enabled);
+        imgDice.setEnabled(enabled);
     }
     //endregion
 
