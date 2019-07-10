@@ -13,4 +13,7 @@
     <string name="btn_roll_next">Next</string>
     <string name="player_points_text">%d points / %d points</string>
     <string name="btn_keep">Keep</string>
+    <string name="strPlayerOneName">First player name</string>
+    <string name="strTwoPlayerName">Second player name</string>
+    <string name="strTargetScore">Target score</string>
 </resources>
