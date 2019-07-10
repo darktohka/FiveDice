@@ -1,8 +1,12 @@
 package ro.bolyai.fivedice.gui;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
+import android.support.annotation.Dimension;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.TypedValue;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -154,6 +158,18 @@ public class GameActivity extends AppCompatActivity {
 
         if (txtRoundWhich != null) {
             txtRoundWhich.setText(String.format(getString(R.string.turn_text), getPlayer().getName()));
+        }
+
+        if (currentPlayer == PLAYER_ONE) {
+            playerOne.getTxtPlayerName().setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
+            playerTwo.getTxtPlayerName().setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
+            playerOne.getTxtPlayerName().setTextColor(ContextCompat.getColor(this, R.color.colorKeepInactive));
+            playerTwo.getTxtPlayerName().setTextColor(ContextCompat.getColor(this, android.R.color.black));
+        } else {
+            playerOne.getTxtPlayerName().setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
+            playerTwo.getTxtPlayerName().setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
+            playerOne.getTxtPlayerName().setTextColor(ContextCompat.getColor(this, android.R.color.black));
+            playerTwo.getTxtPlayerName().setTextColor(ContextCompat.getColor(this, R.color.colorKeepInactive));
         }
 
         setRerollsLeft(REROLL_COUNT);

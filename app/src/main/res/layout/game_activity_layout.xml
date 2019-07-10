@@ -23,6 +23,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@string/placeholder_round"
+            android:textColor="@android:color/black"
             android:textSize="24sp" />
 
         <TableLayout
@@ -39,9 +40,11 @@
 
                 <TextView
                     android:id="@+id/txtPlayerOneName"
-                    android:layout_width="132dp"
+                    android:layout_width="150dp"
                     android:layout_height="wrap_content"
-                    android:text="@string/default_player_one_name" />
+                    android:text="@string/default_player_one_name"
+                    android:textColor="@android:color/black"
+                    android:textSize="14sp" />
 
                 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                     xmlns:tools="http://schemas.android.com/tools"
@@ -78,7 +81,9 @@
                     android:id="@+id/txtPlayerTwoName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/default_player_two_name" />
+                    android:text="@string/default_player_two_name"
+                    android:textColor="@android:color/black"
+                    android:textSize="14sp" />
 
                 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                     xmlns:tools="http://schemas.android.com/tools"
@@ -116,6 +121,7 @@
             android:gravity="center"
             android:paddingTop="10dp"
             android:text="It's Player 2's round!"
+            android:textColor="@android:color/black"
             android:textSize="18sp" />
     </LinearLayout>
 
