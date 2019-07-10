@@ -81,7 +81,7 @@ public class Player extends Model {
             barPlayer.setProgress(score);
         }
         if (txtPlayerScore != null) {
-            txtPlayerScore.setText(String.format(.getString(R.string.player_points_text), score, targetScore));
+            txtPlayerScore.setText(String.format(txtPlayerName.getContext().getString(R.string.player_points_text), score, targetScore));
         }
     }
 
