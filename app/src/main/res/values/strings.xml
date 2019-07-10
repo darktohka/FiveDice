@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">FiveDice</string>
+    <string name="default_player_one_name">Default Name One</string>
+    <string name="default_player_two_name">Default Name Two</string>
+    <string name="default_point_text">0 points / 300 points</string>
+    <string name="placeholder_round">Round 1</string>
+    <string name="keep_btn_discard">Discard</string>
+    <string name="placeholder_left">Rerolls left: 3</string>
+    <string name="btn_roll">Roll</string>
+    <string name="round_text">Round %d</string>
+    <string name="turn_text">It\'s %s\'s turn!</string>
+    <string name="rerolls_left_text">Rerolls left: %d</string>
+    <string name="btn_roll_next">Next</string>
+</resources>
