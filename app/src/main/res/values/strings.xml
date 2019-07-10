@@ -11,4 +11,6 @@
     <string name="turn_text">It\'s %s\'s turn!</string>
     <string name="rerolls_left_text">Rerolls left: %d</string>
     <string name="btn_roll_next">Next</string>
+    <string name="player_points_text">%d points / %d points</string>
+    <string name="btn_keep">Keep</string>
 </resources>

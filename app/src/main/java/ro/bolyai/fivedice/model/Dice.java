@@ -76,18 +76,17 @@ public class Dice extends Model {
 
         if (hasBtnKeep()) {
             int colorId = R.color.colorKeepInactive;
-            String name = "Discard";
+            int nameId = R.string.keep_btn_discard;
 
             if (locked) {
                 colorId = R.color.colorKeepActive;
-                name = "Keep";
+                nameId = R.string.btn_keep;
             }
 
             btnKeep.setBackgroundColor(ContextCompat.getColor(btnKeep.getContext(), colorId));
-            btnKeep.setText(name);
+            btnKeep.setText(btnKeep.getContext().getString(nameId));
         }
 
-        Log.w("GAMEACTIVITY DICE", "Set to locked: " + String.valueOf(locked));
         updateDiceImage();
     }
 

@@ -3,6 +3,8 @@ package ro.bolyai.fivedice.model;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import ro.bolyai.fivedice.R;
+
 public class Player extends Model {
 
     //region 1. Declarations
@@ -79,7 +81,7 @@ public class Player extends Model {
             barPlayer.setProgress(score);
         }
         if (txtPlayerScore != null) {
-            txtPlayerScore.setText(String.format("%d points / %d points", score, targetScore));
+            txtPlayerScore.setText(String.format(.getString(R.string.player_points_text), score, targetScore));
         }
     }
 
