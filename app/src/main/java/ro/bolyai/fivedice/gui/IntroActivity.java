@@ -8,6 +8,11 @@ import android.widget.EditText;
 import ro.bolyai.fivedice.R;
 import ro.bolyai.fivedice.logic.listener.IntroActivityListener;
 
+/**
+ * This activity shows up when you select play in the MainActivity
+ * Here you can select the gamemode, type in the username(s) and
+ * proceed to the GameActivity
+ */
 public class IntroActivity extends AppCompatActivity {
 
     //region 0. Constants
@@ -18,12 +23,25 @@ public class IntroActivity extends AppCompatActivity {
     //endregion
 
     //region 1. Declarations
+    /**
+     * Handles all of the click events of this class
+     */
     private IntroActivityListener introActivityListener;
 
+    /**
+     * Input fields to type in the player(s) name
+     * and the target score
+     * Player one name: {@link EditText}
+     * Player two name: {@link EditText}
+     * Target Score: {@link EditText}
+     */
     private EditText txtPlayerOneName;
     private EditText txtPlayerTwoName;
     private EditText txtTargetScore;
 
+    /**
+     * {@link Button} to start the game.
+     */
     private Button btnStartGame;
 
     private String strPlayerOneName;
@@ -48,6 +66,12 @@ public class IntroActivity extends AppCompatActivity {
 
     //region 4. Helper functions and methods
 
+    /**
+     * It generates the Widgets:
+     * {@link EditText}s and the start {@link Button}
+     *
+     */
+
     public void settingTxtButton() {
         this.txtPlayerOneName = findViewById(R.id.txtPlayerOneName);
         this.txtPlayerTwoName = findViewById(R.id.txtPlayerTwoName);
@@ -56,6 +80,11 @@ public class IntroActivity extends AppCompatActivity {
         this.btnStartGame = findViewById(R.id.btnStartGame);
     }
 
+    /**
+     * It checks the validity of the inputted data.
+     * If there's any problem, returns the problem message as a {@link String}
+     * @return : {@link String}: problem
+     */
     public String checkValidity() {
         String strProblem = "";
 
