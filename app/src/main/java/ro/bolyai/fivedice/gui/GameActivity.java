@@ -93,7 +93,7 @@ public class GameActivity extends AppCompatActivity {
         String playerTwoName = getString(R.string.default_player_two_name);
         targetScore = DEFAULT_TARGET_SCORE;
         currentPlayer = -1;
-        computer = intent.getBooleanExtra("computer", true);
+        computer = intent.getBooleanExtra("computer", false);
 
         if (intent.hasExtra("playerOneName")) {
             playerOneName = intent.getStringExtra("playerOneName");
