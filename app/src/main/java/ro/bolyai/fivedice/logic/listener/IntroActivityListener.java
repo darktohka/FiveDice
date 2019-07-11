@@ -1,4 +1,4 @@
-package ro.bolyai.fivedice.logic;
+package ro.bolyai.fivedice.logic.listener;
 
 import android.content.Intent;
 import android.view.View;

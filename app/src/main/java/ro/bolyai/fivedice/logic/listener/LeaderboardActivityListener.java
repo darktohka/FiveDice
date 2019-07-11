@@ -1,4 +1,4 @@
-package ro.bolyai.fivedice.logic;
+package ro.bolyai.fivedice.logic.listener;
 
 import android.widget.ListView;
 

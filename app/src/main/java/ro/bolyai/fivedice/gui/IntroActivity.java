@@ -6,7 +6,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import ro.bolyai.fivedice.R;
-import ro.bolyai.fivedice.logic.IntroActivityListener;
+import ro.bolyai.fivedice.logic.listener.IntroActivityListener;
 
 public class IntroActivity extends AppCompatActivity {
 

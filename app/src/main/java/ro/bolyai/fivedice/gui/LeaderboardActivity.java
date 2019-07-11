@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.widget.ListView;
 
 import ro.bolyai.fivedice.R;
-import ro.bolyai.fivedice.logic.LeaderboardActivityListener;
+import ro.bolyai.fivedice.logic.listener.LeaderboardActivityListener;
 
 public class LeaderboardActivity extends AppCompatActivity {
     //region 0. Constants

@@ -6,7 +6,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import ro.bolyai.fivedice.R;
-import ro.bolyai.fivedice.logic.MainActivityListener;
+import ro.bolyai.fivedice.logic.listener.MainActivityListener;
 
 /**
  * Entrypoint in the Application

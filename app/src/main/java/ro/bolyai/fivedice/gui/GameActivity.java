@@ -16,7 +16,7 @@ import java.util.List;
 import ro.bolyai.fivedice.R;
 import ro.bolyai.fivedice.gui.model.GUIDice;
 import ro.bolyai.fivedice.gui.model.GUIPlayer;
-import ro.bolyai.fivedice.logic.GameActivityListener;
+import ro.bolyai.fivedice.logic.listener.GameActivityListener;
 import ro.bolyai.fivedice.model.Player;
 
 public class GameActivity extends AppCompatActivity {
