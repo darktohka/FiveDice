@@ -117,19 +117,19 @@ public class GameActivity extends AppCompatActivity {
      * This starts from 1, and is incremented
      * every time a new round starts.
      */
-    private int currentRound;
+    private int iCurrentRound;
 
     /**
      * This variable determines whose turn it is.
      * Can be either {@link GameActivity#PLAYER_ONE} or {@link GameActivity#PLAYER_TWO}.
      */
-    private int currentPlayer = -1;
+    private int iCurrentPlayer = -1;
 
     /**
      * The number of re-rolls left.
      * If this number is 0, there are no re-rolls left.
      */
-    private int rerollsLeft;
+    private int iRerollsLeft;
 
     /**
      * This variable is set to true during intermissions,
@@ -154,6 +154,11 @@ public class GameActivity extends AppCompatActivity {
      * our timer tasks in an orderly fashion.
      */
     private Handler timerHandler;
+
+    /**
+     * A list containing the first player's dice scores.
+     */
+    private List<Integer> firstDice;
     //endregion
 
     //region 2. Lifecycle
@@ -213,6 +218,7 @@ public class GameActivity extends AppCompatActivity {
         // Set default values
         String playerOneName = getString(R.string.default_player_one_name);
         String playerTwoName = getString(R.string.default_player_two_name);
+        iCurrentPlayer = -1;
         targetScore = DEFAULT_TARGET_SCORE;
 
         // Read the new values from the Intent
@@ -264,6 +270,7 @@ public class GameActivity extends AppCompatActivity {
 
         showingDice = false;
         rollingDice = false;
+        firstDice = new ArrayList<>();
     }
     //endregion
 
@@ -348,10 +355,10 @@ public class GameActivity extends AppCompatActivity {
     /**
      * Returns the number of the current round.
      *
-     * @return currentRound : int : The current round.
+     * @return iCurrentRound : int : The current round.
      */
     public int getCurrentRound() {
-        return currentRound;
+        return iCurrentRound;
     }
 
     /**
@@ -361,7 +368,7 @@ public class GameActivity extends AppCompatActivity {
      * @param currentRound : int : The new round number.
      */
     public void setCurrentRound(int currentRound) {
-        this.currentRound = currentRound;
+        this.iCurrentRound = currentRound;
 
         if (txtRound != null) {
             txtRound.setText(String.format(getString(R.string.round_text), currentRound));
@@ -373,17 +380,17 @@ public class GameActivity extends AppCompatActivity {
      * This also updates the GUI automatically.
      */
     public void incrementRound() {
-        this.setCurrentRound(currentRound + 1);
+        this.setCurrentRound(iCurrentRound + 1);
     }
 
     /**
      * Returns which player's turn it is in the current match.
      * Will return either {@link GameActivity#PLAYER_ONE} or {@link GameActivity#PLAYER_TWO}.
      *
-     * @return currentPlayer : int : Either {@link GameActivity#PLAYER_ONE} or {@link GameActivity#PLAYER_TWO}.
+     * @return iCurrentPlayer : int : Either {@link GameActivity#PLAYER_ONE} or {@link GameActivity#PLAYER_TWO}.
      */
     public int getCurrentPlayer() {
-        return currentPlayer;
+        return iCurrentPlayer;
     }
 
     /**
@@ -392,7 +399,7 @@ public class GameActivity extends AppCompatActivity {
      * @return player : {@link Player} : The current turn's player.
      */
     public Player getPlayer() {
-        if (currentPlayer == PLAYER_ONE) {
+        if (iCurrentPlayer == PLAYER_ONE) {
             return playerOne;
         } else {
             return playerTwo;
@@ -409,11 +416,11 @@ public class GameActivity extends AppCompatActivity {
     public void setCurrentPlayer(int currentPlayer) {
         // If the current player is already OK,
         // we don't need to change anything.
-        if (this.currentPlayer == currentPlayer) {
+        if (this.iCurrentPlayer == currentPlayer) {
             return;
         }
 
-        this.currentPlayer = currentPlayer;
+        this.iCurrentPlayer = currentPlayer;
 
         // Update the turn name text.
         if (txtRoundWhich != null) {
@@ -437,24 +444,24 @@ public class GameActivity extends AppCompatActivity {
     /**
      * Returns the number of re-rolls left in the turn.
      *
-     * @return rerollsLeft : int : The number of re-rolls left.
+     * @return iRerollsLeft : int : The number of re-rolls left.
      */
     public int getRerollsLeft() {
-        return rerollsLeft;
+        return iRerollsLeft;
     }
 
     /**
      * Sets the number of re-rolls left in the turn.
      * This also updates the GUI automatically.
      *
-     * @param rerollsLeft : int : The new number of re-rolls left.
+     * @param iRerollsLeft : int : The new number of re-rolls left.
      */
-    public void setRerollsLeft(int rerollsLeft) {
-        this.rerollsLeft = rerollsLeft;
+    public void setRerollsLeft(int iRerollsLeft) {
+        this.iRerollsLeft = iRerollsLeft;
 
         // Update the re-roll count in the GUI.
         if (txtRerolls != null) {
-            txtRerolls.setText(String.format(getString(R.string.rerolls_left_text), rerollsLeft));
+            txtRerolls.setText(String.format(getString(R.string.rerolls_left_text), iRerollsLeft));
         }
     }
 
@@ -463,8 +470,8 @@ public class GameActivity extends AppCompatActivity {
      * This is ran at the end of each roll.
      */
     public void decrementRerolls() {
-        if (rerollsLeft > 0) {
-            this.setRerollsLeft(rerollsLeft - 1);
+        if (iRerollsLeft > 0) {
+            this.setRerollsLeft(iRerollsLeft - 1);
         }
     }
 
@@ -472,10 +479,10 @@ public class GameActivity extends AppCompatActivity {
      * Checks whether the current player has any
      * re-rolls left or not.
      *
-     * @return rerollsLeft : boolean : Returns true if the player has re-rolls left.
+     * @return iRerollsLeft : boolean : Returns true if the player has re-rolls left.
      */
     public boolean hasRerollsLeft() {
-        return this.rerollsLeft > 0;
+        return this.iRerollsLeft > 0;
     }
 
     /**
@@ -544,7 +551,7 @@ public class GameActivity extends AppCompatActivity {
      * @return aiTurn : boolean : True if the computer should roll dice automatically.
      */
     public boolean isAITurn() {
-        return computer && currentPlayer == PLAYER_TWO;
+        return computer && iCurrentPlayer == PLAYER_TWO;
     }
     //endregion
 
@@ -679,7 +686,12 @@ public class GameActivity extends AppCompatActivity {
                     die.rollDice();
                 }
 
-                if (count > 0) {
+                if (count < 0) {
+                    // We've reached a negative count.
+                    return;
+                }
+
+                if (count != 0) {
                     // We need to roll again!
                     timerHandler.postDelayed(this, 75);
                 } else {
@@ -725,10 +737,20 @@ public class GameActivity extends AppCompatActivity {
      */
     public void endShowDice() {
         // Reset all our dice.
+
+        if (iCurrentPlayer == PLAYER_ONE) {
+            // Add the current dice state to the first dice list.
+            firstDice.clear();
+
+            for (GUIDice die : dice) {
+                firstDice.add(die.getValue());
+            }
+        }
+
         setShowingDice(false);
         resetDice();
 
-        if (currentPlayer == PLAYER_ONE) {
+        if (iCurrentPlayer == PLAYER_ONE) {
             // Player one's turn has ended.
             // Player two's turn has begun.
             setCurrentPlayer(PLAYER_TWO);
@@ -757,7 +779,7 @@ public class GameActivity extends AppCompatActivity {
         Player player = getPlayer();
         player.addScore(getTotalDiceValue());
 
-        if (currentPlayer == PLAYER_ONE) {
+        if (iCurrentPlayer == PLAYER_ONE) {
             // Intermission time! The first player's turn is over.
             setShowingDice(true);
         } else {
@@ -812,8 +834,15 @@ public class GameActivity extends AppCompatActivity {
         Intent intent = new Intent(this, WinnerActivity.class);
         intent.putExtra("winnerName", winnerName);
 
-        for (int i = 0; i < diceKeys.length; i++) {
-            intent.putExtra(diceKeys[i], dice.get(i).getValue());
+        // Save the winner's dice to the new activity.
+        if (winner.getName() == playerOne.getName()) {
+            for (int i = 0; i < diceKeys.length; i++) {
+                intent.putExtra(diceKeys[i], firstDice.get(i));
+            }
+        } else {
+            for (int i = 0; i < diceKeys.length; i++) {
+                intent.putExtra(diceKeys[i], dice.get(i).getValue());
+            }
         }
 
         startActivity(intent);
@@ -858,7 +887,7 @@ public class GameActivity extends AppCompatActivity {
             public void run() {
                 // Run through all dice.
                 for (GUIDice die : dice) {
-                    if (die.aiShouldLock(rerollsLeft) && !die.isLocked()) {
+                    if (die.aiShouldLock(iRerollsLeft) && !die.isLocked()) {
                         // Looks like there is a dice we need to lock!
                         // Lock it and run the task again.
                         timerHandler.postDelayed(this, 500);
