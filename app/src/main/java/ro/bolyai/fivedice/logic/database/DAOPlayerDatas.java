@@ -1,8 +1,10 @@
 package ro.bolyai.fivedice.logic.database;
 
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -45,7 +47,7 @@ public class DAOPlayerDatas extends ASQLiteKeyWords {
     //endregion
 
     //region 4. Read Operations
-    public List<PlayerDatas> getCustomerByIdFromDbTable(SQLiteDatabase db) {
+    public List<PlayerDatas> getPlayerDatasByIdFromDbTable(SQLiteDatabase db) {
         List<PlayerDatas> allPlayerDatasFromDbTable= new ArrayList<>();
 
         try{
@@ -59,7 +61,7 @@ public class DAOPlayerDatas extends ASQLiteKeyWords {
 
             if(cResultSet!=null){
                 while(cResultSet.moveToFirst()){
-                    PlayerDatas playerDatasFromDbTable= this.getCreateTableStatement(cResultSet);
+                    PlayerDatas playerDatasFromDbTable= this.getPlayerDAtasTableStatement(cResultSet);
 
                     allPlayerDatasFromDbTable.add(playerDatasFromDbTable);
                 }
@@ -77,6 +79,45 @@ public class DAOPlayerDatas extends ASQLiteKeyWords {
 
     }
 
+    @NonNull
+    public PlayerDatas getPlayerDatasByIdFromDbTable(SQLiteDatabase db, int iId){
+        PlayerDatas playerDatasFromTable=null;
+
+        try{
+            String   strWhereClause = COL_NAME_ID + EQUALS_OPERATOR_INC_PLACE_HOLDER;
+            String[] strWhereArgs   = {String.valueOf(iId)};
+
+            Cursor cResultSet = db.query(TBL_NAME,
+                    null,
+                    strWhereClause,
+                    strWhereArgs,
+                    null,
+                    null,
+                    null
+            );
+
+            if (cResultSet != null) {
+
+                //3. Check the data in the result set
+                if (cResultSet.moveToFirst()) {
+
+                    //4. Extract the data into a Customer
+                    playerDatasFromTable = this.getPlayerDAtasTableStatement(cResultSet);
+                } else {
+                    Log.d(TBL_NAME, "No record with the _id: " + iId + " found");
+                }
+
+            }
+
+        }catch (SQLException sqlEx){
+            Log.e(TBL_NAME, sqlEx.getMessage() + "\n" + sqlEx.getStackTrace().toString());
+        }finally {
+            db.close();
+        }
+
+        return playerDatasFromTable;
+    }
+
     //endregion
 
     //region 5. Insert Operations
@@ -89,7 +130,7 @@ public class DAOPlayerDatas extends ASQLiteKeyWords {
 
     //region 7. ContentValues and Result set Handling
 
-    private PlayerDatas getCreateTableStatement(Cursor cResultSet){
+    private PlayerDatas getPlayerDAtasTableStatement(Cursor cResultSet){
         PlayerDatas playerDatasFromDbTable= new PlayerDatas();
 
         int indexId=cResultSet.getColumnIndex(COL_NAME_ID);
