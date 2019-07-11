@@ -20,7 +20,8 @@ public class TestData {
     public static synchronized List<PlayerDatas> getTestPlayerDatas(){
         List<PlayerDatas> testPlayerDatas= new ArrayList<>();
         for(int i=0;i<MAX_PLAYERS;i++){
-            PlayerDatas playerDatas= new PlayerDatas("Player nr. "+String.valueOf(i));
+            PlayerDatas playerDatas= new PlayerDatas();
+            playerDatas.setName("Player "+String.valueOf(i));
             playerDatas.setId(i);
             playerDatas.setWinsPvP(i);
             playerDatas.setWinsPvE(i);

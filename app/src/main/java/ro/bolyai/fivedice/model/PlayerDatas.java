@@ -4,7 +4,9 @@ package ro.bolyai.fivedice.model;
 public class PlayerDatas {
 
     //region 0. Constants
-    private static final int DEF_INT_VALUE=0;
+    private static final String DEF_STRING_VALUE="_strvalue_";
+
+    private static final int DEF_INT_VALUE=-1;
     //endregion
 
 
@@ -17,10 +19,21 @@ public class PlayerDatas {
     //endregion
 
     //region 2. Constructor
-    public PlayerDatas(String name){
-        this.strName=name;
+    public PlayerDatas(){
+        this.iId=DEF_INT_VALUE;
+        this.strName=DEF_STRING_VALUE;
         this.lngWinsPvP=DEF_INT_VALUE;
         this.lngWinsPvE=DEF_INT_VALUE;
+    }
+
+    public PlayerDatas(int iId, String name, int lngWinsPvP, int lngWinsPvE){
+        this();
+
+        this.strName=name;
+        this.iId=iId;
+        this.lngWinsPvP=lngWinsPvP;
+        this.lngWinsPvE=lngWinsPvE;
+
     }
     //endregion
 
