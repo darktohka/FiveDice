@@ -34,14 +34,25 @@ import ro.bolyai.fivedice.model.PlayerScore;
 public class DAOPlayerScore extends ASQLiteKeyWords {
 
     //region 0. Constants
+    /**
+     * Table name
+     */
     private static final String TBL_NAME = "tblPlayerScores";
-
+    /**
+     * 1. Column _id with the Index 0
+     */
     private static final String COL_NAME_ID = "_id";
-
+    /**
+     * 2. Column playerName with the index 1
+     */
     private static final String COL_NAME_PLAYER_NAME = "playerName";
-
+    /**
+     * 3. Column playerPvPWins with the index 2
+     */
     private static final String COL_NAME_PLAYER_PVP_WINS = "playerPvPWins";
-
+    /**
+     * 4. Column playerPvEWins with the index 3
+     */
     private static final String COL_NAME_PLAYER_PVE_WINS = "playerPvEWins";
     //endregion
 
@@ -49,12 +60,32 @@ public class DAOPlayerScore extends ASQLiteKeyWords {
     //endregion
 
     //region 2. Constructor
+
+    /**
+     * Default Constructor
+     */
     public DAOPlayerScore() {
         //nothing to do
     }
     //endregion
 
     //region 3. Create Table Statement
+
+    /**
+     * Returns the SQL-Statement for
+     * creating this database table
+     * {@link DAOPlayerScore#TBL_NAME}
+     * CREATE TABLE tblPlayerScores<br>
+     * //Column name / Datatype Additional Orders//<br>
+     * (<br>
+     * _id INTEGER PRIMARY KEY AUTOINCREMENT, <br>
+     * playerName TEXT,<br>
+     * playerPvPWins INTEGER,<br>
+     * playerPvEWins INTEGER<br>
+     * );<br>
+     *
+     * @return strCreateTableStatement : {@link String}
+     */
     public String getCreateTableStatement() {
         return CREATE_TBL + TBL_NAME
                 + CHAR_OPEN_BRACKET
@@ -67,6 +98,13 @@ public class DAOPlayerScore extends ASQLiteKeyWords {
     //endregion
 
     //region 4. Read Operations
+
+    /**
+     * Returns all the {@link PlayerScore}s in the database table
+     *
+     * @param db : {@link SQLiteDatabase} : Database object
+     * @return allPlayerScoresFromDbTable : {@link PlayerScore}s:
+     */
     public List<PlayerScore> getAllPlayerScoresFromDbTable(SQLiteDatabase db) {
         List<PlayerScore> allPlayerScoreFromDbTable = new ArrayList<>();
 
@@ -93,13 +131,22 @@ public class DAOPlayerScore extends ASQLiteKeyWords {
         return allPlayerScoreFromDbTable;
     }
 
+    /**
+     * Returns the {@link PlayerScore}s by the given player name
+     *
+     * @param db         : {@link SQLiteDatabase} : Database object
+     * @param playerName : String : {@link PlayerScore#getName()} PlayerScore to get from the database
+     * @return playerScoreFromTable : {@link PlayerScore}s: PlayerScore fount by the name
+     * or null if there is no record with the given name
+     */
+
     @Nullable
     public PlayerScore getPlayerScoreByNameFromDbTable(SQLiteDatabase db, String playerName) {
         PlayerScore playerScoreFromTable = null;
 
         try {
-            String strWhereClause = COL_NAME_PLAYER_NAME + EQUALS_OPERATOR_INC_PLACE_HOLDER;
-            String[] strWhereArgs = {playerName};
+            String   strWhereClause = COL_NAME_PLAYER_NAME + EQUALS_OPERATOR_INC_PLACE_HOLDER;
+            String[] strWhereArgs   = {playerName};
 
             Cursor cResultSet = db.query(TBL_NAME,
                     null,
@@ -125,6 +172,14 @@ public class DAOPlayerScore extends ASQLiteKeyWords {
     //endregion
 
     //region 5. Insert Operations
+
+    /**
+     * Inserts set of PlayerScores into database table
+     *
+     * @param db                     : {@link SQLiteDatabase} : Database object
+     * @param allPlayerScoreToInsert : {@link List} - {@link PlayerScore} : PlayerScores which are going to be inserted
+     * @return rowId : long : row id of the last inserted customer
+     */
     public long insertAllPlayerScoresIntoDbTable(SQLiteDatabase db, @NonNull List<PlayerScore> allPlayerScoreToInsert) {
         long rowId = -1L;
 
@@ -146,6 +201,14 @@ public class DAOPlayerScore extends ASQLiteKeyWords {
         return rowId;
     }
 
+    /**
+     * Insert a single  {@link PlayerScore} into the database table
+     *
+     * @param db          : {@link SQLiteDatabase} : Database object
+     * @param playerScore : {@link PlayerScore} : PlayerScore which is going to be inserted
+     * @return rowId : long : row id of the last inserted customer
+     */
+
     public long insertPlayerScoreIntoDbTable(SQLiteDatabase db, @NonNull PlayerScore playerScore) {
         long rowId = -1L;
 
@@ -165,13 +228,21 @@ public class DAOPlayerScore extends ASQLiteKeyWords {
     //endregion
 
     //region 6. Update Operations
+
+    /**
+     * Updates a single existent {@link PlayerScore} in the database table
+     *
+     * @param db                  : {@link SQLiteDatabase} : Database object
+     * @param playerScoreToUpdate : {@link PlayerScore} : PlayerScore which is going to be updated
+     * @return iCountofAffectedRows : int : The number describes how many data records where updated
+     */
     public int updatePlayerScoreInTable(SQLiteDatabase db, @NonNull PlayerScore playerScoreToUpdate) {
         int iCountOfAffectedRows = -1;
 
         try {
             ContentValues cvPlayerScore = this.getContentValuesFromPlayerScore(playerScoreToUpdate);
-            String strWhereClaus = COL_NAME_ID + EQUALS_OPERATOR_INC_PLACE_HOLDER;
-            String[] strWhereArgs = {String.valueOf(playerScoreToUpdate.getId())};
+            String        strWhereClaus = COL_NAME_ID + EQUALS_OPERATOR_INC_PLACE_HOLDER;
+            String[]      strWhereArgs  = {String.valueOf(playerScoreToUpdate.getId())};
 
             iCountOfAffectedRows = db.update(TBL_NAME, cvPlayerScore, strWhereClaus, strWhereArgs);
         } catch (SQLException sqlEx) {
@@ -200,8 +271,8 @@ public class DAOPlayerScore extends ASQLiteKeyWords {
     private PlayerScore getPlayerScoreTableStatement(Cursor cResultSet) {
         PlayerScore playerScoreFromDbTable = new PlayerScore();
 
-        int indexId = cResultSet.getColumnIndex(COL_NAME_ID);
-        int indexPlayerName = cResultSet.getColumnIndex(COL_NAME_PLAYER_NAME);
+        int indexId            = cResultSet.getColumnIndex(COL_NAME_ID);
+        int indexPlayerName    = cResultSet.getColumnIndex(COL_NAME_PLAYER_NAME);
         int indexPlayerPvPWins = cResultSet.getColumnIndex(COL_NAME_PLAYER_PVP_WINS);
         int indexPlayerPvEWins = cResultSet.getColumnIndex(COL_NAME_PLAYER_PVE_WINS);
 
