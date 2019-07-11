@@ -237,5 +237,17 @@ public class GUIDice extends Dice {
             }
         }
     }
+
+
+    /**
+     * Returns a drawable resource ID based
+     * on the score of a {@link Dice}.
+     *
+     * @param value : int : The value of the dice.
+     * @return resourceId : int : A drawable resource ID.
+     */
+    public static int getBitmapForValue(int value) {
+        return getBitmapForValue(value, false);
+    }
     //endregion
 }

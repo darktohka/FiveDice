@@ -8,7 +8,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +15,7 @@ import java.util.List;
 import ro.bolyai.fivedice.R;
 import ro.bolyai.fivedice.gui.model.GUIDice;
 import ro.bolyai.fivedice.gui.model.GUIPlayer;
+import ro.bolyai.fivedice.gui.model.WinnerActivity;
 import ro.bolyai.fivedice.logic.listener.GameActivityListener;
 import ro.bolyai.fivedice.model.Player;
 
@@ -47,6 +47,11 @@ public class GameActivity extends AppCompatActivity {
      * The score value of a hidden dice.
      */
     private static final int HIDDEN_DIE = 0;
+
+    /**
+     * A {@link String} containing a dice key for each dice.
+     */
+    private static final String[] diceKeys = new String[]{"diceOne", "diceTwo", "diceThree", "diceFour", "diceFive"};
     //endregion
 
     //region 1. Widget declarations
@@ -775,7 +780,15 @@ public class GameActivity extends AppCompatActivity {
      * @param winner : {@link Player} : The overall winner of the game.
      */
     public void gameWon(Player winner) {
-        Toast.makeText(this, winner.getName() + " has won !!! ", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, WinnerActivity.class);
+        intent.putExtra("winnerName", winner.getName());
+
+        for (int i = 0; i < diceKeys.length; i++) {
+            intent.putExtra(diceKeys[i], dice.get(i).getValue());
+        }
+
+        startActivity(intent);
+        finish();
     }
     //endregion
 
