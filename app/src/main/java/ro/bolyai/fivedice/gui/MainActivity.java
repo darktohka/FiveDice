@@ -8,21 +8,43 @@ import android.widget.ImageView;
 import ro.bolyai.fivedice.R;
 import ro.bolyai.fivedice.logic.MainActivityListener;
 
+/**
+ * Entrypoint in the Application
+ * Here you can choose if you want to
+ * play the game of want to see the
+ * leaderboard of the game.
+ * <p>
+ * All the click events are handled in {@link MainActivityListener}
+ */
 public class MainActivity extends AppCompatActivity {
 
     //region 0. Constants
     //endregion
 
     //region 1. Decl. and Init widgets and attributes
+    /**
+     * Shows the main title logo of the game
+     */
     ImageView imgFiveDice;
 
+    /**
+     * Open up the game or the leaderboard
+     */
     Button btnPlay;
     Button btnLeaderboard;
 
+    /**
+     * Handles the clicks of the class
+     */
     MainActivityListener mainActivityListener;
     //endregion
 
     //region 2. LifeCircle
+
+    /**
+     * First method invoked after the Constructor
+     * @param savedInstanceState : {@link Bundle} : InputData from the user
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
