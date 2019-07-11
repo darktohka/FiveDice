@@ -1,5 +1,10 @@
 package ro.bolyai.fivedice.model;
 
+/**
+ * Our base model class.
+ * <p>
+ * All of our models should extend this class.
+ */
 public class Model {
 
     //region 0. Constants
