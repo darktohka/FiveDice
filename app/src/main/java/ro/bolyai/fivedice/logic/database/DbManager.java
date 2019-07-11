@@ -106,9 +106,28 @@ public class DbManager extends SQLiteOpenHelper {
     }
 
     @Nullable
-    public DAOPlayerDatas getPlayerDatasById(int iId){
+    public PlayerDatas getPlayerDatasById(int iId){
         return this.daoPlayerDatas.getPlayerDatasByIdFromDbTable(this.getWritableDatabase(),iId);
     }
 
     //endregion
+
+    //region 6. Insert All PlayerDatas
+
+    public long insertAllPlayerDatas(@NonNull List<PlayerDatas> playerDatasToInsert){
+        return this.daoPlayerDatas.insertAllPlayerDatasIntoFromTable(this.getWritableDatabase(), playerDatasToInsert);
+    }
+
+    public long insertPlayerDatas(@NonNull PlayerDatas playerDatasToInsert){
+        return this.daoPlayerDatas.insertPlayerDatasIntoDbTable(this.getWritableDatabase(), playerDatasToInsert);
+    }
+
+    //endregion
+
+    //region 7. Update PlayerDatas
+    public int updatePlayerDatas(@NonNull PlayerDatas playerDatasToUpdate){
+        return this.daoPlayerDatas.updatePlayerDatasInTable(this.getWritableDatabase(), playerDatasToUpdate);
+    }
+    //endregion
+
 }
