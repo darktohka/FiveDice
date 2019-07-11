@@ -155,7 +155,7 @@ public class GameActivity extends AppCompatActivity {
      * our timer tasks in an orderly fashion.
      */
     private Handler timerHandler;
-    //endregiom
+    //endregion
 
     //region 2. Lifecycle
 
