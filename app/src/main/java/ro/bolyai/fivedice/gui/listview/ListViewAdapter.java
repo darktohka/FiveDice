@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import java.util.Collections;
 import java.util.List;
 
 import ro.bolyai.fivedice.R;
@@ -81,14 +82,15 @@ public class ListViewAdapter extends BaseAdapter {
         this.layoutInflater = LayoutInflater.from(this.context);
 
         //Link together with the Database
-        this.allPlayerScores =DbManager.getInstance(this.context).getAllPlayerScores();
+        this.allPlayerScores = DbManager.getInstance(this.context).getAllPlayerScores();
+        Collections.sort(this.allPlayerScores);
     }
     //endregion
 
     //region 3. List functions
 
     /**
-     * How many items are in the data set represented by this Adapter.
+     * How many items are in the data set are represented by this Adapter.
      *
      * @return Count of items.
      */
@@ -150,7 +152,7 @@ public class ListViewAdapter extends BaseAdapter {
         if (currentListViewItem == null) {
             currentListViewItem = layoutInflater.inflate(R.layout.list_view_item_layout, parentListView, false);
 
-            TextView txtPlayerName     = currentListViewItem.findViewById(R.id.txtPlayerName);
+            TextView txtPlayerName = currentListViewItem.findViewById(R.id.txtPlayerName);
             TextView txtPlayerPvPWins = currentListViewItem.findViewById(R.id.txtPlayerPvPWins);
             TextView txtPlayerPvEWins = currentListViewItem.findViewById(R.id.txtPlayerPvEWins);
 

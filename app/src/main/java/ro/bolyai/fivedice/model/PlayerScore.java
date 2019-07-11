@@ -1,7 +1,9 @@
 package ro.bolyai.fivedice.model;
 
 
-public class PlayerScore extends Model {
+import ro.bolyai.fivedice.logic.database.DAOPlayerScore;
+
+public class PlayerScore extends Model implements Comparable<PlayerScore> {
 
     //region 1. Declarations
     /**
@@ -127,6 +129,20 @@ public class PlayerScore extends Model {
      */
     public void setWinsPvP(long lngWinsPvP) {
         this.lngWinsPvP = lngWinsPvP;
+    }
+
+    /**
+     * Compares this object with the specified object for order.  Returns a
+     * negative integer, zero, or a positive integer as this object is less
+     * than, equal to, or greater than the specified object.
+     *
+     * @param o the object to be compared.
+     * @return a negative integer, zero, or a positive integer as this object
+     * is less than, equal to, or greater than the specified object.
+     */
+    @Override
+    public int compareTo(PlayerScore o) {
+        return new Long(o.getWinsPvE() + o.getWinsPvP()).compareTo(getWinsPvE() + getWinsPvP());
     }
     //endregion
 }
