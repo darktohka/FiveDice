@@ -168,7 +168,28 @@ public class DAOPlayerDatas extends ASQLiteKeyWords {
     //endregion
 
     //region 6. Update Operations
+    public int updatePlayerDatasInTable(SQLiteDatabase db, @NonNull PlayerDatas playerDatasToUpdate){
+        int iCountOfAffectRows = -1;
 
+        if(playerDatasToUpdate!=null) {
+            try {
+                ContentValues cvPlayerDatas = this.getContentValuesFromPlayerDatas(playerDatasToUpdate);
+                String strWhereClaus = COL_NAME_ID + EQUALS_OPERATOR_INC_PLACE_HOLDER;
+                String[] strWhereArgs = {String.valueOf(playerDatasToUpdate.getId())};
+
+                iCountOfAffectRows = db.update(TBL_NAME, cvPlayerDatas, strWhereClaus, strWhereArgs);
+
+            } catch (SQLException sqlEx) {
+                Log.e(TBL_NAME, sqlEx.getMessage() + "\n" + sqlEx.getStackTrace().toString());
+            } finally {
+                // Closing the database connection
+                db.close();
+            }
+        }
+
+        return iCountOfAffectRows;
+
+    }
     //endregion
 
     //region 7. ContentValues and Result set Handling
