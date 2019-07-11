@@ -1,5 +1,6 @@
 package ro.bolyai.fivedice.logic.database;
 
+import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
@@ -10,6 +11,7 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 
+import ro.bolyai.fivedice.model.Player;
 import ro.bolyai.fivedice.model.PlayerDatas;
 
 public class DAOPlayerDatas extends ASQLiteKeyWords {
@@ -121,6 +123,47 @@ public class DAOPlayerDatas extends ASQLiteKeyWords {
     //endregion
 
     //region 5. Insert Operations
+    public long insertAllPlayerDatasIntoFromTable(SQLiteDatabase db, @NonNull List<PlayerDatas> allPlayerDatasToInsert){
+        long rowId = -1L;
+        if(!allPlayerDatasToInsert.isEmpty()){
+            try{
+
+                for(PlayerDatas pd : allPlayerDatasToInsert){
+                    ContentValues cvPlayerDatas=this.getContentValuesFromPlayerDatas(pd);
+
+                    rowId=db.insert(TBL_NAME, null, cvPlayerDatas);
+                }
+            }catch (SQLException sqlEx) {
+                Log.e(TBL_NAME, sqlEx.getMessage() + "\n" + sqlEx.getStackTrace().toString());
+            }finally {
+                db.close();
+            }
+        }
+
+        return rowId;
+
+    }
+
+
+    public long insertPlayerDatasIntoDbTable(SQLiteDatabase db, @NonNull PlayerDatas playerDatas){
+        long rowId = -1L;
+
+        if(playerDatas!=null){
+            try{
+                ContentValues cvPlayerDatas = this.getContentValuesFromPlayerDatas(playerDatas);
+
+            rowId=db.insert(TBL_NAME, null, cvPlayerDatas);
+
+            }catch (SQLException sqlEx) {
+                Log.e(TBL_NAME, sqlEx.getMessage() + "\n" + sqlEx.getStackTrace().toString());
+            } finally {
+                // Closing the database connection
+                db.close();
+            }
+        }
+        return rowId;
+    }
+
 
     //endregion
 
@@ -129,6 +172,17 @@ public class DAOPlayerDatas extends ASQLiteKeyWords {
     //endregion
 
     //region 7. ContentValues and Result set Handling
+
+    private ContentValues getContentValuesFromPlayerDatas(PlayerDatas playerDatas){
+        ContentValues cvPlayerDatas=new ContentValues();
+
+        cvPlayerDatas.put(COL_NAME_PLAYER_NAME, playerDatas.getName());
+        cvPlayerDatas.put(COL_NAME_PLAYER_PVP_WINS, playerDatas.getWinsPvP());
+        cvPlayerDatas.put(COL_NAME_PLAYER_PVE_WINS, playerDatas.getWinsPvE());
+
+        return cvPlayerDatas;
+    }
+
 
     private PlayerDatas getPlayerDAtasTableStatement(Cursor cResultSet){
         PlayerDatas playerDatasFromDbTable= new PlayerDatas();
