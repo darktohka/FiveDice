@@ -15,10 +15,10 @@ public class ViewHolder {
     //endregion
 
     //region 2. Constructor
-    public ViewHolder(TextView txtPlayerName, TextView txtPlayerPvPPoint, TextView txtPlayerPvEPoint){
+    public ViewHolder(TextView txtPlayerName, TextView txtPlayerPvPWins, TextView txtPlayerPvEWins){
         this.txtPlayerName=txtPlayerName;
-        this.txtPlayerPvPWins =txtPlayerPvPPoint;
-        this.txtPlayerPvEWins =txtPlayerPvEPoint;
+        this.txtPlayerPvPWins =txtPlayerPvPWins;
+        this.txtPlayerPvEWins =txtPlayerPvEWins;
     }
 
     //endregion
