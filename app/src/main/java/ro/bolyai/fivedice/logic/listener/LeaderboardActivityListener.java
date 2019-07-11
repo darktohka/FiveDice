@@ -18,7 +18,7 @@ public class LeaderboardActivityListener {
     //region 2.Constructor
 
     public LeaderboardActivityListener(LeaderboardActivity activity) {
-        this.activity=activity;
+        this.activity = activity;
         generateWidgetReferences();
     }
 
@@ -27,8 +27,8 @@ public class LeaderboardActivityListener {
 
     //region 3. Helper functions
 
-    public void updatePlayerListView(){
-        this.listViewAdapter= new ListViewAdapter(activity);
+    public void updatePlayerListView() {
+        this.listViewAdapter = new ListViewAdapter(activity);
         lvAllPlayers.setAdapter(listViewAdapter);
     }
 
