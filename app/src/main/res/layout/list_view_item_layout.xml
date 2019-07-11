@@ -18,22 +18,22 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/txtPlayerPvPPoint"
+            android:id="@+id/txtPlayerPvPWins"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/strPlayerPvPPoint"
-            android:textSize="16sp"
-            android:textColor="@android:color/holo_red_dark"/>
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="16sp" />
 
         <TextView
-            android:id="@+id/txtPlayerPvEPoint"
+            android:id="@+id/txtPlayerPvEWins"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/strPlayerPvEPoint"
-            android:textSize="16sp"
-            android:textColor="@android:color/holo_red_light"/>
+            android:textColor="@android:color/holo_red_light"
+            android:textSize="16sp" />
     </LinearLayout>
 
 </LinearLayout>

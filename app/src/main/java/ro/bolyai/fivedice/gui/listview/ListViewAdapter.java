@@ -151,10 +151,10 @@ public class ListViewAdapter extends BaseAdapter {
             currentListViewItem = layoutInflater.inflate(R.layout.list_view_item_layout, parentListView, false);
 
             TextView txtPlayerName     = currentListViewItem.findViewById(R.id.txtPlayerName);
-            TextView txtPlayerPvPPoint = currentListViewItem.findViewById(R.id.txtPlayerPvPPoint);
-            TextView txtPlayerPvEPoint = currentListViewItem.findViewById(R.id.txtPlayerPvEPoint);
+            TextView txtPlayerPvPWins = currentListViewItem.findViewById(R.id.txtPlayerPvPWins);
+            TextView txtPlayerPvEWins = currentListViewItem.findViewById(R.id.txtPlayerPvEWins);
 
-            viewHolder = new ViewHolder(txtPlayerName, txtPlayerPvPPoint, txtPlayerPvEPoint);
+            viewHolder = new ViewHolder(txtPlayerName, txtPlayerPvPWins, txtPlayerPvEWins);
 
             currentListViewItem.setTag(viewHolder);
         } else {
