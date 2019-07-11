@@ -1,8 +1,6 @@
 package ro.bolyai.fivedice.model;
 
 
-import ro.bolyai.fivedice.logic.database.DAOPlayerScore;
-
 public class PlayerScore extends Model implements Comparable<PlayerScore> {
 
     //region 1. Declarations
