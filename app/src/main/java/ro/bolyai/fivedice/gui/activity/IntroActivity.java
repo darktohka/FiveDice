@@ -2,8 +2,11 @@ package ro.bolyai.fivedice.gui.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 import ro.bolyai.fivedice.R;
 import ro.bolyai.fivedice.logic.listener.IntroActivityListener;
@@ -20,6 +23,9 @@ public class IntroActivity extends AppCompatActivity {
 
     private static final int MINIMUM_TARGET_SCORE = 40;
     private static final int MAXIMUM_TARGET_SCORE = 1500;
+
+    public static final int GAMEMODE_PVP = 0;
+    public static final int GAMEMODE_WITH_AI = 1;
     //endregion
 
     //region 1. Declarations
@@ -44,23 +50,34 @@ public class IntroActivity extends AppCompatActivity {
      */
     private Button btnStartGame;
 
+    /**
+     * {@link Spinner} to select the gamemode
+     */
+    private Spinner spGamemode;
+
     private String strPlayerOneName;
     private String strPlayerTwoName;
 
     private int iTargetScore = 0;
+
+    private int iGamemode;
     //endregion
 
     //region 2. Lifecycle
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //1. Set the layout
         this.setContentView(R.layout.intro_activity_layout);
-
+        //2. Generate Listener
         this.introActivityListener = new IntroActivityListener(this);
-
-        settingTxtButton();
-
+        //3. Generate Widgets
+        generateWidgets();
+        //4. Initialize spinner items
+        initGamemodeSpinner();
+        //5. Set the listeners
         btnStartGame.setOnClickListener(introActivityListener);
+        spGamemode.setOnItemSelectedListener(introActivityListener);
     }
     //endregion
 
@@ -71,12 +88,13 @@ public class IntroActivity extends AppCompatActivity {
      * {@link EditText}s and the start {@link Button}
      */
 
-    public void settingTxtButton() {
+    public void generateWidgets() {
         this.txtPlayerOneName = findViewById(R.id.txtPlayerOneName);
         this.txtPlayerTwoName = findViewById(R.id.txtPlayerTwoName);
         this.txtTargetScore = findViewById(R.id.txtTargetScore);
 
         this.btnStartGame = findViewById(R.id.btnStartGame);
+        this.spGamemode = findViewById(R.id.spGamemode);
     }
 
     /**
@@ -105,7 +123,7 @@ public class IntroActivity extends AppCompatActivity {
             }
         }
 
-        if (strPlayerOneName.isEmpty() || strPlayerTwoName.isEmpty()) {
+        if (strPlayerOneName.isEmpty() || (strPlayerTwoName.isEmpty() && iGamemode == GAMEMODE_PVP)) {
             strProblem += "The name is empty!\n";
         }
 
@@ -121,6 +139,35 @@ public class IntroActivity extends AppCompatActivity {
 
         return strProblem;
     }
+
+    /**
+     * Initializes the items in the gamemode selection {@link Spinner}
+     */
+    private void initGamemodeSpinner() {
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.gamemodes, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spGamemode.setAdapter(adapter);
+
+    }
+
+    /**
+     * Enables and sets visible txtPlayerTwoName {@link EditText} when Player versus Player
+     * gamemode is selected
+     */
+    public void enableTxtPlayerTwoName(){
+        txtPlayerTwoName.setEnabled(true);
+        txtPlayerTwoName.setVisibility(View.VISIBLE);
+    }
+
+    /**
+     * Disables and sets invisible txtPlayerTwoName {@link EditText} when Player versus AI
+     * gamemode is selected
+     */
+    public void disableTxtPlayerTwoName(){
+        txtPlayerTwoName.setEnabled(false);
+        txtPlayerTwoName.setVisibility(View.INVISIBLE);
+    }
+
     //endregion
 
     //region 5. Getters
@@ -129,11 +176,28 @@ public class IntroActivity extends AppCompatActivity {
     }
 
     public String getPlayerTwoName() {
-        return strPlayerTwoName;
+        if (iGamemode == GAMEMODE_WITH_AI) {
+            return getString(R.string.computer_player_name);
+        } else {
+            return strPlayerTwoName;
+        }
     }
 
     public int getTargetScore() {
         return iTargetScore;
     }
+
+    public int getGamemode() {
+        return iGamemode;
+    }
+
+    //endregion
+
+    //region 6. Setters
+
+    public void setGamemode(int iGamemode) {
+        this.iGamemode = iGamemode;
+    }
+
     //endregion
 }

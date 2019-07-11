@@ -25,4 +25,12 @@
     <string name="strPlayerName">Player Name</string>
     <string name="strPlayerPvPPoint">PvP Point</string>
     <string name="strPlayerPvEPoint">PvE Point</string>
+    <string name="computer_player_name">The Computer</string>
+
+    <!-- Items of the gamemode selection spinner -->
+    <string-array name="gamemodes">
+        <item>Player versus Player</item>
+        <item>Player versus AI</item>
+    </string-array>
+
 </resources>

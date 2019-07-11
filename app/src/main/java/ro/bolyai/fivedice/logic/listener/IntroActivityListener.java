@@ -2,6 +2,7 @@ package ro.bolyai.fivedice.logic.listener;
 
 import android.content.Intent;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Toast;
 
 import ro.bolyai.fivedice.R;
@@ -11,7 +12,8 @@ import ro.bolyai.fivedice.gui.activity.IntroActivity;
 /**
  * Handles all of the click events of the IntroActivity
  */
-public class IntroActivityListener implements View.OnClickListener {
+public class IntroActivityListener implements View.OnClickListener,
+        AdapterView.OnItemSelectedListener {
 
     //region 0. Constants
     //endregion
@@ -32,7 +34,7 @@ public class IntroActivityListener implements View.OnClickListener {
      */
     public IntroActivityListener(IntroActivity activity) {
         this.activity = activity;
-        this.activity.settingTxtButton();
+        this.activity.generateWidgets();
     }
 
     //endregion
@@ -67,6 +69,35 @@ public class IntroActivityListener implements View.OnClickListener {
             Toast.makeText(activity, error, Toast.LENGTH_SHORT).show();
         }
     }
+
+    /**
+     * Called when an item is selected in the dropdown list
+     * Enables or disables the txtSecondPlayerName in function to the selected gamemode
+     * @param parentSpinner : {@link AdapterView} The AdapterView (Spinner) where the item is selected
+     * @param currentSelectedItem : {@link View} The selected viwe within the AdapterView that was clicked
+     *                            (this wil be a view provided by the adapter)
+     * @param index : int : The index of the clicked SpinnerItem which the gamemode is selected
+     * @param id : long : Gamemode Id
+     */
+    @Override
+    public void onItemSelected(AdapterView<?> parentSpinner, View currentSelectedItem, int index, long id) {
+        //Toast.makeText(activity, "Index: " + String.valueOf(index) + " ID: " + String.valueOf(id), Toast.LENGTH_LONG).show();
+        activity.setGamemode(index);
+        if(index == activity.GAMEMODE_WITH_AI)
+            activity.disableTxtPlayerTwoName();
+        else
+            activity.enableTxtPlayerTwoName();
+    }
+
+    /**
+     * Called when Nothing is selected
+     * @param parentSpinner : {@link AdapterView} The AdapterView (Spinner) where the item is selected
+     */
+    @Override
+    public void onNothingSelected(AdapterView<?> parentSpinner) {
+        //Toast.makeText(activity, "Nothing is selected", Toast.LENGTH_LONG).show();
+    }
+
     //endregion
 
     //region 4. Jumping to a new activity
@@ -81,7 +112,7 @@ public class IntroActivityListener implements View.OnClickListener {
         intent.putExtra("playerOneName", activity.getPlayerOneName());
         intent.putExtra("playerTwoName", activity.getPlayerTwoName());
         intent.putExtra("targetScore", activity.getTargetScore());
-
+        intent.putExtra("computer", activity.getGamemode() == IntroActivity.GAMEMODE_WITH_AI);
         activity.startActivity(intent);
 
     }
