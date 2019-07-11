@@ -6,13 +6,26 @@ import ro.bolyai.fivedice.R;
 import ro.bolyai.fivedice.gui.GameActivity;
 import ro.bolyai.fivedice.model.Dice;
 
+/**
+ * Handles all of the click events of the GameActivity
+ */
 public class GameActivityListener implements View.OnClickListener {
 
     //region 1. Declarations
+    /**
+     * Working reference of the current Activity
+     */
     private GameActivity activity;
     //endregion
 
     //region 2. Constructors
+
+    /**
+     * Default Constructor sets the working reference of the
+     * current Activity
+     *
+     * @param activity : {@link GameActivity} : Working reference
+     */
     public GameActivityListener(GameActivity activity) {
         this.activity = activity;
     }
