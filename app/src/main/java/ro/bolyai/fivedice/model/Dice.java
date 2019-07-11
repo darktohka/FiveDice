@@ -130,6 +130,21 @@ public class Dice extends Model {
         btnKeep.setEnabled(enabled);
         imgDice.setEnabled(enabled);
     }
+
+    public boolean aiShouldLock(int rerollsLeft) {
+        // On the first roll, any 5s or 6s are kept. Then the first re-roll is used to change anything not kept.
+        // After the first re-roll, any new 4s, 5s or 6s are kept. Anything not kept is re-rolled the second time.
+        // The chance of getting all 6s and 5s on the first throw is 1/729. Individually, there is a 1/3th chance per dice of getting a 5 or 6.
+        // For the first re-roll, I decided to stick with keeping 4s, 5s and 6s, instead of 3s, 4s, 5s and 6s.
+        // Assuming no dice were kept from the initial roll, the chance of getting all 4s 5s and 6s is 1/64. If I included 3s that chance would be 1/11.
+        // However, after testing I found that the best strategy is to go with the slightly lower, but acceptable, odds of 1/64 to keep only the 4s, 5s and 6s after the first re-roll.
+
+        if (rerollsLeft < 2) {
+            return value == 4 || value == 5 || value == 6;
+        } else {
+            return value == 5 || value == 6;
+        }
+    }
     //endregion
 
     //region 4. Static methods

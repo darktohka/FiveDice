@@ -39,10 +39,9 @@ public class GameActivityListener implements View.OnClickListener {
 
         if (activity.isShowingDice()) {
             activity.endShowDice();
-            return;
+        } else {
+            activity.rollDice();
         }
-
-        activity.rollDice();
     }
     //endregion
 }

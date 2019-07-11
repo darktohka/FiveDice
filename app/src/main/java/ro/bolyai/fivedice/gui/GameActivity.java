@@ -55,6 +55,8 @@ public class GameActivity extends AppCompatActivity {
     private boolean showingDice;
     private boolean rollingDice;
 
+    private boolean computer;
+
     private Handler timerHandler;
     //endregion
 
@@ -91,6 +93,7 @@ public class GameActivity extends AppCompatActivity {
         String playerTwoName = getString(R.string.default_player_two_name);
         targetScore = DEFAULT_TARGET_SCORE;
         currentPlayer = -1;
+        computer = intent.getBooleanExtra("computer", true);
 
         if (intent.hasExtra("playerOneName")) {
             playerOneName = intent.getStringExtra("playerOneName");
@@ -236,6 +239,14 @@ public class GameActivity extends AppCompatActivity {
         this.rollingDice = rollingDice;
     }
 
+    public boolean isComputer() {
+        return computer;
+    }
+
+    public void setComputer(boolean computer) {
+        this.computer = computer;
+    }
+
     public void hideDiceKeep() {
         for (Dice die : dice) {
             die.hideKeepButton();
@@ -321,15 +332,22 @@ public class GameActivity extends AppCompatActivity {
                     rollingDice = false;
                     btnRoll.setEnabled(true);
 
-                    for (Dice die : dice) {
-                        die.showKeepButton();
-                        die.setEnabled(true);
-                    }
-
                     decrementRerolls();
 
                     if (!hasRerollsLeft() || isAllDiceLocked()) {
                         endMatch();
+                    } else {
+                        boolean aiTurn = isAITurn();
+
+                        for (Dice die : dice) {
+                            die.showKeepButton();
+                            die.setEnabled(!aiTurn);
+                        }
+
+                        if (aiTurn) {
+                            btnRoll.setEnabled(false);
+                            aiStartLocking();
+                        }
                     }
                 }
             }
@@ -353,6 +371,38 @@ public class GameActivity extends AppCompatActivity {
         }
     }
 
+    public void aiRollDice() {
+        for (Dice die : dice) {
+            die.setEnabled(false);
+        }
+
+        btnRoll.setEnabled(false);
+
+        timerHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                rollDice();
+            }
+        }, 500);
+    }
+
+    public void aiStartLocking() {
+        timerHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                for (Dice die : dice) {
+                    if (die.aiShouldLock(rerollsLeft) && !die.isLocked()) {
+                        timerHandler.postDelayed(this, 500);
+                        die.setLocked(true);
+                        return;
+                    }
+                }
+
+                aiRollDice();
+            }
+        }, 500);
+    }
+
     public void gameWon(Player winner) {
         Toast.makeText(this, winner.getName() + " has won !!! ", Toast.LENGTH_SHORT).show();
     }
@@ -364,11 +414,19 @@ public class GameActivity extends AppCompatActivity {
         if (currentPlayer == PLAYER_ONE) {
             // Player one
             setCurrentPlayer(PLAYER_TWO);
+
+            if (isAITurn()) {
+                aiRollDice();
+            }
         } else {
             // Player two
             incrementRound();
             setCurrentPlayer(PLAYER_ONE);
         }
+    }
+
+    public boolean isAITurn() {
+        return computer && currentPlayer == PLAYER_TWO;
     }
 
     public TextView getTxtRound() {
