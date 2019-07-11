@@ -18,4 +18,8 @@
     <string name="strTargetScore">Target score</string>
     <string name="strPlay">Play</string>
     <string name="strLeaderboard">LeaderBoard</string>
+
+    <string name="strPlayerName">Player Name</string>
+    <string name="strPlayerPvPPoint">PvP Point</string>
+    <string name="strPlayerPvEPoint">PvE Point</string>
 </resources>
