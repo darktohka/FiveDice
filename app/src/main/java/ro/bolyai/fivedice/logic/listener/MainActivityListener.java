@@ -6,6 +6,7 @@ import android.view.View;
 
 import ro.bolyai.fivedice.R;
 import ro.bolyai.fivedice.gui.IntroActivity;
+import ro.bolyai.fivedice.gui.LeaderboardActivity;
 import ro.bolyai.fivedice.gui.MainActivity;
 
 /**
@@ -86,7 +87,13 @@ public class MainActivityListener implements View.OnClickListener {
      * Called when the leader board button is clicked
      */
     private void leaderboardButtonClicked(){
+        //1. EXPLICIT INTENT to start the LeaderboardActivity
+        Intent intentToStartLeaderboardActivity = new Intent(mainActivity, LeaderboardActivity.class);
 
+        //2. Place to put Extras
+
+        //3. Start the activity
+        mainActivity.startActivity(intentToStartLeaderboardActivity);
     }
 
     //endregion

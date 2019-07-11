@@ -15,13 +15,14 @@
         <activity android:name=".gui.IntroActivity">
 
         </activity>
-        <activity android:name=".gui.MainActivity" />
-        <activity android:name=".gui.LeaderboardActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        <activity android:name=".gui.MainActivity">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
+        <activity android:name=".gui.LeaderboardActivity">
         </activity>
     </application>
 
