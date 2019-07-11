@@ -10,17 +10,15 @@ import ro.bolyai.fivedice.gui.listview.ListViewAdapter;
 
 /**
  * This activity shows the list of players played in this games
- * and shows their achieved scores and performances in a {@link ListView}
+ * and shows their achieved scores and performances in a {@link ListView}.
  */
-
 public class LeaderboardActivity extends AppCompatActivity {
 
-    //region 1. Declaratiosn
+    //region 1. Declarations
     /**
-     * Shows all Players in itself
-     * the data and the ListViewItems
-     * will be generated and handled
-     * in the ListViewAdapter
+     * This {@link ListView} shows all players in
+     * itself. The data and the {@link ListView} items
+     * will be generated and handled in the {@link ListViewAdapter}.
      */
     private ListView lvAllPlayers;
 
