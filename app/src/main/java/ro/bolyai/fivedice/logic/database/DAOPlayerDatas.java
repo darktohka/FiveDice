@@ -6,6 +6,7 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -81,7 +82,7 @@ public class DAOPlayerDatas extends ASQLiteKeyWords {
 
     }
 
-    @NonNull
+    @Nullable
     public PlayerDatas getPlayerDatasByIdFromDbTable(SQLiteDatabase db, int iId){
         PlayerDatas playerDatasFromTable=null;
 

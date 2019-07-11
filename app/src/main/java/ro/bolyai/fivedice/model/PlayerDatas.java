@@ -1,7 +1,9 @@
 package ro.bolyai.fivedice.model;
 
 
-public class PlayerDatas {
+import ro.bolyai.fivedice.logic.database.DAOPlayerDatas;
+
+public class PlayerDatas  {
 
     //region 0. Constants
     private static final String DEF_STRING_VALUE="_strvalue_";
