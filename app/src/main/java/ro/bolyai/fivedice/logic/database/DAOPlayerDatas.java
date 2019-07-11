@@ -15,6 +15,23 @@ import java.util.List;
 import ro.bolyai.fivedice.model.Player;
 import ro.bolyai.fivedice.model.PlayerDatas;
 
+/**
+ * [D]ata [A]ccess [O]bject for the table tblPlayerDatas
+ * in the local SQLite3 Database. It implements
+ * all the needed Information such as:<br>
+ * <br>the<br>
+ * Tablename : {@link DAOPlayerDatas#TBL_NAME}<br>
+ * <br>the<br>
+ * Columnnames:
+ * <ul>
+ * <li>{@link DAOPlayerDatas#COL_NAME_ID}</li>
+ * <li>{@link DAOPlayerDatas#COL_NAME_PLAYER_NAME}</li>
+ * * <li>{@link DAOPlayerDatas#COL_NAME_PLAYER_PVP_WINS}</li>
+ * * <li>{@link DAOPlayerDatas#COL_NAME_PLAYER_PVE_WINS}</li>
+ * </ul>
+ * <br> and the <br>CRUD Operations:
+ */
+
 public class DAOPlayerDatas extends ASQLiteKeyWords {
     //region 0. Constants
     private static final String TBL_NAME="tblPlayerDatas";
