@@ -11,8 +11,7 @@ import java.util.List;
 
 import ro.bolyai.fivedice.R;
 import ro.bolyai.fivedice.logic.database.DbManager;
-import ro.bolyai.fivedice.model.PlayerDatas;
-import ro.bolyai.fivedice.testdata.TestData;
+import ro.bolyai.fivedice.model.PlayerScore;
 
 /**
  * Generates so many graphical ListViewItems as there
@@ -62,7 +61,7 @@ public class ListViewAdapter extends BaseAdapter {
      * <p>
      * and the {@link ListViewAdapter#getView(int, View, ViewGroup)}.
      */
-    private List<PlayerDatas> allPlayerDatas;
+    private List<PlayerScore> allPlayerScores;
     //endregion
 
     //region 2. Constructors
@@ -82,7 +81,7 @@ public class ListViewAdapter extends BaseAdapter {
         this.layoutInflater = LayoutInflater.from(this.context);
 
         //Link together with the Database
-        this.allPlayerDatas=DbManager.getInstance(this.context).getAllPlayerDatas();
+        this.allPlayerScores =DbManager.getInstance(this.context).getAllPlayerScores();
     }
     //endregion
 
@@ -95,7 +94,7 @@ public class ListViewAdapter extends BaseAdapter {
      */
     @Override
     public int getCount() {
-        return allPlayerDatas.size();
+        return allPlayerScores.size();
     }
 
     /**
@@ -107,7 +106,7 @@ public class ListViewAdapter extends BaseAdapter {
      */
     @Override
     public Object getItem(int position) {
-        return allPlayerDatas.get(position);
+        return allPlayerScores.get(position);
     }
 
     /**
@@ -118,7 +117,7 @@ public class ListViewAdapter extends BaseAdapter {
      */
     @Override
     public long getItemId(int position) {
-        return (long) allPlayerDatas.get(position).getId();
+        return (long) allPlayerScores.get(position).getId();
     }
 
     //endregion
@@ -162,11 +161,11 @@ public class ListViewAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) currentListViewItem.getTag();
         }
 
-        PlayerDatas playerDatas = (PlayerDatas) allPlayerDatas.get(position);
+        PlayerScore playerScore = (PlayerScore) allPlayerScores.get(position);
 
-        viewHolder.getTxtPlayerName().setText(playerDatas.getName());
-        viewHolder.getTxtPlayerPvPWins().setText("PvP: " + playerDatas.getWinsPvP());
-        viewHolder.getTxtPlayerPvEWins().setText("PvE: " + playerDatas.getWinsPvE());
+        viewHolder.getTxtPlayerName().setText(playerScore.getName());
+        viewHolder.getTxtPlayerPvPWins().setText("PvP: " + playerScore.getWinsPvP());
+        viewHolder.getTxtPlayerPvEWins().setText("PvE: " + playerScore.getWinsPvE());
 
         return currentListViewItem;
     }

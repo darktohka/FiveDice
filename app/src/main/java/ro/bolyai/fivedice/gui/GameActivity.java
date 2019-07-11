@@ -16,8 +16,10 @@ import ro.bolyai.fivedice.R;
 import ro.bolyai.fivedice.gui.model.GUIDice;
 import ro.bolyai.fivedice.gui.model.GUIPlayer;
 import ro.bolyai.fivedice.gui.model.WinnerActivity;
+import ro.bolyai.fivedice.logic.database.DbManager;
 import ro.bolyai.fivedice.logic.listener.GameActivityListener;
 import ro.bolyai.fivedice.model.Player;
+import ro.bolyai.fivedice.model.PlayerScore;
 
 public class GameActivity extends AppCompatActivity {
 
@@ -780,8 +782,36 @@ public class GameActivity extends AppCompatActivity {
      * @param winner : {@link Player} : The overall winner of the game.
      */
     public void gameWon(Player winner) {
+        // Update the database first.
+        String winnerName = winner.getName();
+        DbManager db = DbManager.getInstance(this);
+        PlayerScore score = db.getPlayerScoreByName(winnerName);
+        boolean updateScore = true;
+
+        if (score == null) {
+            // This score does not exist in the database yet, we have to add it first.
+            score = new PlayerScore(-1, winnerName, 0, 0);
+            updateScore = false;
+        }
+
+        // Update the win count.
+        if (computer) {
+            score.setWinsPvE(score.getWinsPvE() + 1);
+        } else {
+            score.setWinsPvP(score.getWinsPvP() + 1);
+        }
+
+        if (updateScore) {
+            // Update the score.
+            db.updatePlayerScore(score);
+        } else {
+            // Insert a new score.
+            db.insertPlayerScore(score);
+        }
+
+        // Start the WinnerActivity now!
         Intent intent = new Intent(this, WinnerActivity.class);
-        intent.putExtra("winnerName", winner.getName());
+        intent.putExtra("winnerName", winnerName);
 
         for (int i = 0; i < diceKeys.length; i++) {
             intent.putExtra(diceKeys[i], dice.get(i).getValue());

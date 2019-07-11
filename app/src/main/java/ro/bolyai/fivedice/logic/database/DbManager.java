@@ -1,6 +1,5 @@
 package ro.bolyai.fivedice.logic.database;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
@@ -11,28 +10,28 @@ import android.util.Log;
 
 import java.util.List;
 
-import ro.bolyai.fivedice.model.PlayerDatas;
+import ro.bolyai.fivedice.model.PlayerScore;
 
 public class DbManager extends SQLiteOpenHelper {
 
     //region 0. Constants
     private static final String TAG = DbManager.class.getSimpleName();
-    private static final String DB_NAME="fiveDice.db";
-    private static final int DB_VERSION=1;
+    private static final String DB_NAME = "fiveDice.db";
+    private static final int DB_VERSION = 1;
     //endregion
 
     //region 1. Variables
     private static DbManager instance;
 
-    private DAOPlayerDatas daoPlayerDatas;
+    private DAOPlayerScore daoPlayerScore;
     //endregion
 
     //region 2. Constructor
 
-    public DbManager(Context context){
+    public DbManager(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
 
-        this.daoPlayerDatas=new DAOPlayerDatas();
+        this.daoPlayerScore = new DAOPlayerScore();
 
         this.getWritableDatabase();
 
@@ -42,6 +41,7 @@ public class DbManager extends SQLiteOpenHelper {
     //endregion
 
     //region 3. Create and Update the Database
+
     /**
      * Called when the database is created for the first time. This is where the
      * creation of tables and the initial population of the tables should happen.
@@ -50,9 +50,9 @@ public class DbManager extends SQLiteOpenHelper {
      */
     @Override
     public void onCreate(SQLiteDatabase db) {
-        try{
-            db.execSQL(this.daoPlayerDatas.getCreateTableStatement());
-        }catch (SQLiteException sqlEx) {
+        try {
+            db.execSQL(this.daoPlayerScore.getCreateTableStatement());
+        } catch (SQLiteException sqlEx) {
             Log.e(TAG, sqlEx.getMessage() + "\n" + sqlEx.getStackTrace().toString());
         }
     }
@@ -90,10 +90,11 @@ public class DbManager extends SQLiteOpenHelper {
 
     //region 4. Get Instance
 
-    public static synchronized DbManager getInstance(Context context){
-        if(instance==null){
-            instance=new DbManager(context);
+    public static synchronized DbManager getInstance(Context context) {
+        if (instance == null) {
+            instance = new DbManager(context);
         }
+
         return instance;
     }
 
@@ -101,32 +102,32 @@ public class DbManager extends SQLiteOpenHelper {
 
     //region 5. Read Customers
 
-    public List<PlayerDatas> getAllPlayerDatas(){
-        return this.daoPlayerDatas.getPlayerDatasByIdFromDbTable(this.getWritableDatabase());
+    public List<PlayerScore> getAllPlayerScores() {
+        return this.daoPlayerScore.getAllPlayerScoresFromDbTable(this.getWritableDatabase());
     }
 
     @Nullable
-    public PlayerDatas getPlayerDatasById(int iId){
-        return this.daoPlayerDatas.getPlayerDatasByIdFromDbTable(this.getWritableDatabase(),iId);
+    public PlayerScore getPlayerScoreByName(String strName) {
+        return this.daoPlayerScore.getPlayerScoreByNameFromDbTable(this.getWritableDatabase(), strName);
     }
 
     //endregion
 
-    //region 6. Insert All PlayerDatas
+    //region 6. Insert All PlayerScore
 
-    public long insertAllPlayerDatas(@NonNull List<PlayerDatas> playerDatasToInsert){
-        return this.daoPlayerDatas.insertAllPlayerDatasIntoFromTable(this.getWritableDatabase(), playerDatasToInsert);
+    public long insertAllPlayerScores(@NonNull List<PlayerScore> playerScoreToInsert) {
+        return this.daoPlayerScore.insertAllPlayerScoresIntoDbTable(this.getWritableDatabase(), playerScoreToInsert);
     }
 
-    public long insertPlayerDatas(@NonNull PlayerDatas playerDatasToInsert){
-        return this.daoPlayerDatas.insertPlayerDatasIntoDbTable(this.getWritableDatabase(), playerDatasToInsert);
+    public long insertPlayerScore(@NonNull PlayerScore playerScoreToInsert) {
+        return this.daoPlayerScore.insertPlayerScoreIntoDbTable(this.getWritableDatabase(), playerScoreToInsert);
     }
 
     //endregion
 
-    //region 7. Update PlayerDatas
-    public int updatePlayerDatas(@NonNull PlayerDatas playerDatasToUpdate){
-        return this.daoPlayerDatas.updatePlayerDatasInTable(this.getWritableDatabase(), playerDatasToUpdate);
+    //region 7. Update PlayerScore
+    public int updatePlayerScore(@NonNull PlayerScore playerScoreToUpdate) {
+        return this.daoPlayerScore.updatePlayerScoreInTable(this.getWritableDatabase(), playerScoreToUpdate);
     }
     //endregion
 
