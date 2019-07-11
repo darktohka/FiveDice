@@ -92,6 +92,9 @@ public class IntroActivity extends AppCompatActivity {
         this.strPlayerTwoName = this.txtPlayerTwoName.getText().toString();
         this.iTargetScore = 0;
 
+        if(strPlayerOneName.equals(strPlayerTwoName))
+            strProblem+="Change the name!";
+
         if (txtTargetScore.getText().toString().isEmpty()) {
             strProblem += "The target score is empty!\n";
         } else {
