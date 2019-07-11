@@ -12,6 +12,11 @@ public class Model {
      * The default {@link String} value for our models.
      */
     public static final String DEFAULT_STR_VALUE = "no_Value-";
+
+    /**
+     * The default boolean value for our models.
+     */
+    public static final boolean DEFAULT_BOOL_VALUE = false;
     //endregion
 
 }

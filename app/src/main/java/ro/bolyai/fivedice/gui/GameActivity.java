@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ro.bolyai.fivedice.R;
+import ro.bolyai.fivedice.gui.model.GUIDice;
 import ro.bolyai.fivedice.logic.GameActivityListener;
 import ro.bolyai.fivedice.model.Dice;
 import ro.bolyai.fivedice.model.Player;
@@ -46,7 +47,7 @@ public class GameActivity extends AppCompatActivity {
     private Player playerOne;
     private Player playerTwo;
     private int targetScore;
-    private List<Dice> dice;
+    private List<GUIDice> dice;
 
     private int currentRound;
     private int currentPlayer = -1;
@@ -121,13 +122,13 @@ public class GameActivity extends AppCompatActivity {
         playerTwo.initialize(targetScore);
 
         dice = new ArrayList<>();
-        dice.add(new Dice((ImageView) findViewById(R.id.imgDice1), (Button) findViewById(R.id.btnKeep1)));
-        dice.add(new Dice((ImageView) findViewById(R.id.imgDice2), (Button) findViewById(R.id.btnKeep2)));
-        dice.add(new Dice((ImageView) findViewById(R.id.imgDice3), (Button) findViewById(R.id.btnKeep3)));
-        dice.add(new Dice((ImageView) findViewById(R.id.imgDice4), (Button) findViewById(R.id.btnKeep4)));
-        dice.add(new Dice((ImageView) findViewById(R.id.imgDice5), (Button) findViewById(R.id.btnKeep5)));
+        dice.add(new GUIDice((ImageView) findViewById(R.id.imgDice1), (Button) findViewById(R.id.btnKeep1)));
+        dice.add(new GUIDice((ImageView) findViewById(R.id.imgDice2), (Button) findViewById(R.id.btnKeep2)));
+        dice.add(new GUIDice((ImageView) findViewById(R.id.imgDice3), (Button) findViewById(R.id.btnKeep3)));
+        dice.add(new GUIDice((ImageView) findViewById(R.id.imgDice4), (Button) findViewById(R.id.btnKeep4)));
+        dice.add(new GUIDice((ImageView) findViewById(R.id.imgDice5), (Button) findViewById(R.id.btnKeep5)));
 
-        for (Dice die : dice) {
+        for (GUIDice die : dice) {
             die.initialize();
         }
 
@@ -248,19 +249,19 @@ public class GameActivity extends AppCompatActivity {
     }
 
     public void hideDiceKeep() {
-        for (Dice die : dice) {
+        for (GUIDice die : dice) {
             die.hideKeepButton();
         }
     }
 
     public void showDiceKeep() {
-        for (Dice die : dice) {
+        for (GUIDice die : dice) {
             die.showKeepButton();
         }
     }
 
     public boolean isAllDiceLocked() {
-        for (Dice die : dice) {
+        for (GUIDice die : dice) {
             if (!die.isLocked()) {
                 return false;
             }
@@ -272,7 +273,7 @@ public class GameActivity extends AppCompatActivity {
     public int getTotalDiceValue() {
         int value = 0;
 
-        for (Dice die : dice) {
+        for (GUIDice die : dice) {
             value += die.getValue();
         }
 
@@ -296,7 +297,7 @@ public class GameActivity extends AppCompatActivity {
     }
 
     public void resetDice() {
-        for (Dice die : dice) {
+        for (GUIDice die : dice) {
             die.setValue(HIDDEN_DIE);
             die.setLocked(false);
             die.hideKeepButton();
@@ -311,7 +312,7 @@ public class GameActivity extends AppCompatActivity {
         rollingDice = true;
         btnRoll.setEnabled(false);
 
-        for (Dice die : dice) {
+        for (GUIDice die : dice) {
             die.setEnabled(false);
         }
 
@@ -322,7 +323,7 @@ public class GameActivity extends AppCompatActivity {
             public void run() {
                 count--;
 
-                for (Dice die : dice) {
+                for (GUIDice die : dice) {
                     die.rollDice();
                 }
 
@@ -339,7 +340,7 @@ public class GameActivity extends AppCompatActivity {
                     } else {
                         boolean aiTurn = isAITurn();
 
-                        for (Dice die : dice) {
+                        for (GUIDice die : dice) {
                             die.showKeepButton();
                             die.setEnabled(!aiTurn);
                         }
@@ -372,7 +373,7 @@ public class GameActivity extends AppCompatActivity {
     }
 
     public void aiRollDice() {
-        for (Dice die : dice) {
+        for (GUIDice die : dice) {
             die.setEnabled(false);
         }
 
@@ -390,7 +391,7 @@ public class GameActivity extends AppCompatActivity {
         timerHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                for (Dice die : dice) {
+                for (GUIDice die : dice) {
                     if (die.aiShouldLock(rerollsLeft) && !die.isLocked()) {
                         timerHandler.postDelayed(this, 500);
                         die.setLocked(true);
@@ -453,7 +454,7 @@ public class GameActivity extends AppCompatActivity {
         return targetScore;
     }
 
-    public List<Dice> getDice() {
+    public List<GUIDice> getDice() {
         return dice;
     }
     //endregion
