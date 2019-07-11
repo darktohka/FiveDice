@@ -11,22 +11,22 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name=".gui.GameActivity"
+            android:name=".gui.activity.GameActivity"
             android:screenOrientation="landscape" />
 
-        <activity android:name=".gui.IntroActivity"
+        <activity android:name=".gui.activity.IntroActivity"
             android:screenOrientation="landscape"/>
 
         <activity
-            android:name=".gui.model.WinnerActivity"
+            android:name=".gui.activity.WinnerActivity"
             android:screenOrientation="landscape"></activity>
 
         <activity
-            android:name=".gui.LeaderboardActivity"
+            android:name=".gui.activity.LeaderboardActivity"
             android:screenOrientation="landscape" />
 
         <activity
-            android:name=".gui.MainActivity"
+            android:name=".gui.activity.MainActivity"
             android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

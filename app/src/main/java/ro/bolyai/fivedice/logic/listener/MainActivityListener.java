@@ -1,13 +1,12 @@
 package ro.bolyai.fivedice.logic.listener;
 
-import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 
 import ro.bolyai.fivedice.R;
-import ro.bolyai.fivedice.gui.IntroActivity;
-import ro.bolyai.fivedice.gui.LeaderboardActivity;
-import ro.bolyai.fivedice.gui.MainActivity;
+import ro.bolyai.fivedice.gui.activity.IntroActivity;
+import ro.bolyai.fivedice.gui.activity.LeaderboardActivity;
+import ro.bolyai.fivedice.gui.activity.MainActivity;
 
 /**
  * Listener class of the MainActivity

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
     android:orientation="vertical"
-    tools:context=".gui.IntroActivity">
+    tools:context=".gui.activity.IntroActivity">
 
 
     <Space

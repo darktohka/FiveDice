@@ -11,6 +11,7 @@ import java.util.Collections;
 import java.util.List;
 
 import ro.bolyai.fivedice.R;
+import ro.bolyai.fivedice.gui.activity.LeaderboardActivity;
 import ro.bolyai.fivedice.logic.database.DbManager;
 import ro.bolyai.fivedice.model.PlayerScore;
 
@@ -68,11 +69,11 @@ public class ListViewAdapter extends BaseAdapter {
     //region 2. Constructors
 
     /**
-     * Default COnstructor needs the Context(currentActivity: {@link ro.bolyai.fivedice.gui.LeaderboardActivity})
+     * Default COnstructor needs the Context(currentActivity: {@link LeaderboardActivity})
      * to generate the {@link LayoutInflater}, so that he can be used to generate the ListViewItems
      * in the function {@link ListViewAdapter#getView(int, View, ViewGroup)}.
      *
-     * @param context : {@link Context} : {@link ro.bolyai.fivedice.gui.LeaderboardActivity}
+     * @param context : {@link Context} : {@link LeaderboardActivity}
      */
     public ListViewAdapter(Context context) {
         //Set the context

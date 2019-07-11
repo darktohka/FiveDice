@@ -1,4 +1,4 @@
-package ro.bolyai.fivedice.gui;
+package ro.bolyai.fivedice.gui.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -69,7 +69,6 @@ public class IntroActivity extends AppCompatActivity {
     /**
      * It generates the Widgets:
      * {@link EditText}s and the start {@link Button}
-     *
      */
 
     public void settingTxtButton() {
@@ -83,6 +82,7 @@ public class IntroActivity extends AppCompatActivity {
     /**
      * It checks the validity of the inputted data.
      * If there's any problem, returns the problem message as a {@link String}
+     *
      * @return : {@link String}: problem
      */
     public String checkValidity() {

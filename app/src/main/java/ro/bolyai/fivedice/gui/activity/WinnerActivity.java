@@ -1,4 +1,4 @@
-package ro.bolyai.fivedice.gui.model;
+package ro.bolyai.fivedice.gui.activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import ro.bolyai.fivedice.R;
+import ro.bolyai.fivedice.gui.model.GUIDice;
 import ro.bolyai.fivedice.logic.listener.WinnerActivityListener;
 
 public class WinnerActivity extends Activity {

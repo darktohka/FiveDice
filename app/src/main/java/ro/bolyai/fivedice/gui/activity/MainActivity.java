@@ -1,7 +1,7 @@
-package ro.bolyai.fivedice.gui;
+package ro.bolyai.fivedice.gui.activity;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 import android.widget.ImageView;
 
@@ -9,9 +9,9 @@ import ro.bolyai.fivedice.R;
 import ro.bolyai.fivedice.logic.listener.MainActivityListener;
 
 /**
- * Entrypoint in the Application
+ * Entry point of the application
  * Here you can choose if you want to
- * play the game of want to see the
+ * play the game or check the
  * leaderboard of the game.
  * <p>
  * All the click events are handled in {@link MainActivityListener}
@@ -25,25 +25,32 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Shows the main title logo of the game
      */
-    ImageView imgFiveDice;
+    private ImageView imgFiveDice;
 
     /**
-     * Open up the game or the leaderboard
+     * This {@link Button} is in charge of
+     * opening up the {@link IntroActivity}.
      */
-    Button btnPlay;
-    Button btnLeaderboard;
+    private Button btnPlay;
+
+    /**
+     * This {@link Button} is in charge of
+     * opening up the {@link LeaderboardActivity}.
+     */
+    private Button btnLeaderboard;
 
     /**
      * Handles the clicks of the class
      */
-    MainActivityListener mainActivityListener;
+    private MainActivityListener mainActivityListener;
     //endregion
 
-    //region 2. LifeCircle
+    //region 2. Lifecycle
 
     /**
-     * First method invoked after the Constructor
-     * @param savedInstanceState : {@link Bundle} : InputData from the user
+     * First method invoked after the constructor
+     *
+     * @param savedInstanceState : {@link Bundle} : The saved instance state
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,10 +71,6 @@ public class MainActivity extends AppCompatActivity {
         //4. Add Listener
         btnPlay.setOnClickListener(mainActivityListener);
         btnLeaderboard.setOnClickListener(mainActivityListener);
-
     }
-    //endregion
-
-    //region 3. Helper functions and methods
     //endregion
 }

@@ -3,8 +3,7 @@ package ro.bolyai.fivedice.logic.listener;
 import android.view.View;
 
 import ro.bolyai.fivedice.R;
-import ro.bolyai.fivedice.gui.GameActivity;
-import ro.bolyai.fivedice.model.Dice;
+import ro.bolyai.fivedice.gui.activity.GameActivity;
 
 /**
  * Handles all of the click events of the GameActivity
@@ -13,7 +12,7 @@ public class GameActivityListener implements View.OnClickListener {
 
     //region 1. Declarations
     /**
-     * Working reference of the current Activity
+     * Working reference of the current {@link GameActivity}
      */
     private GameActivity activity;
     //endregion
@@ -21,8 +20,8 @@ public class GameActivityListener implements View.OnClickListener {
     //region 2. Constructors
 
     /**
-     * Default Constructor sets the working reference of the
-     * current Activity
+     * Default constructor, setting the working reference of the
+     * current activity
      *
      * @param activity : {@link GameActivity} : Working reference
      */

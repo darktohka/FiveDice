@@ -1,4 +1,4 @@
-package ro.bolyai.fivedice.gui;
+package ro.bolyai.fivedice.gui.activity;
 
 
 import android.os.Bundle;

@@ -5,8 +5,8 @@ import android.view.View;
 import android.widget.Toast;
 
 import ro.bolyai.fivedice.R;
-import ro.bolyai.fivedice.gui.GameActivity;
-import ro.bolyai.fivedice.gui.IntroActivity;
+import ro.bolyai.fivedice.gui.activity.GameActivity;
+import ro.bolyai.fivedice.gui.activity.IntroActivity;
 
 /**
  * Handles all of the click events of the IntroActivity

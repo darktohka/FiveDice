@@ -3,6 +3,8 @@ package ro.bolyai.fivedice.gui.listview;
 
 import android.widget.TextView;
 
+import ro.bolyai.fivedice.gui.activity.LeaderboardActivity;
+
 /**
  * Holds the Widget references of
  * a single ListViewItem which is going to
@@ -18,21 +20,21 @@ public class ViewHolder {
     /**
      * Will display the {@link ro.bolyai.fivedice.model.Player} Names in a single
      * ListViewItem. Which is integerated / shown in
-     * the ListView Widget in the {@link ro.bolyai.fivedice.gui.LeaderboardActivity}
+     * the ListView Widget in the {@link LeaderboardActivity}
      */
     private TextView txtPlayerName;
 
     /**
      * Will display the {@link ro.bolyai.fivedice.model.Player} PvP Wins
      * in a single ListViewItem. Which is integrateed / shown in
-     * the ListView Widget in the {@link ro.bolyai.fivedice.gui.LeaderboardActivity}
+     * the ListView Widget in the {@link LeaderboardActivity}
      */
     private TextView txtPlayerPvPWins;
 
     /**
      * Will display the {@link ro.bolyai.fivedice.model.Player} PvE Wins
      * in a single ListViewItem. Which is integrateed / shown in
-     * the ListView Widget in the {@link ro.bolyai.fivedice.gui.LeaderboardActivity}
+     * the ListView Widget in the {@link LeaderboardActivity}
      */
     private TextView txtPlayerPvEWins;
 

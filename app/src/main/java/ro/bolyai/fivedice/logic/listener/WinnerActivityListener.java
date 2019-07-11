@@ -4,9 +4,9 @@ import android.content.Intent;
 import android.view.View;
 
 import ro.bolyai.fivedice.R;
-import ro.bolyai.fivedice.gui.IntroActivity;
-import ro.bolyai.fivedice.gui.MainActivity;
-import ro.bolyai.fivedice.gui.model.WinnerActivity;
+import ro.bolyai.fivedice.gui.activity.IntroActivity;
+import ro.bolyai.fivedice.gui.activity.MainActivity;
+import ro.bolyai.fivedice.gui.activity.WinnerActivity;
 
 public class WinnerActivityListener implements View.OnClickListener {
 

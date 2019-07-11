@@ -1,4 +1,4 @@
-package ro.bolyai.fivedice.gui;
+package ro.bolyai.fivedice.gui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,7 +15,6 @@ import java.util.List;
 import ro.bolyai.fivedice.R;
 import ro.bolyai.fivedice.gui.model.GUIDice;
 import ro.bolyai.fivedice.gui.model.GUIPlayer;
-import ro.bolyai.fivedice.gui.model.WinnerActivity;
 import ro.bolyai.fivedice.logic.database.DbManager;
 import ro.bolyai.fivedice.logic.listener.GameActivityListener;
 import ro.bolyai.fivedice.model.Player;
