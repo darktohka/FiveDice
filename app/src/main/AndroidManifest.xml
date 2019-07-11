@@ -15,6 +15,7 @@
         <activity android:name=".gui.IntroActivity">
 
         </activity>
+        <activity android:name=".gui.model.WinnerActivity"></activity>
         <activity android:name=".gui.MainActivity">
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />

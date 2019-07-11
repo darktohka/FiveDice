@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".gui.model.WinnerActivity">
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="15dp" />
+
+    <TextView
+        android:id="@+id/txtvWinner"
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:fontFamily="serif"
+        android:text="@string/strWinner"
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimary"
+        android:textSize="80sp"
+        android:textStyle="bold" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="15dp" />
+
+    <TextView
+        android:id="@+id/txtvWinnerName"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:fontFamily="serif"
+        android:includeFontPadding="true"
+        android:text="@string/strWinnerName"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="15dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:orientation="horizontal">
+
+        <Space
+            android:layout_width="5dp"
+            android:layout_height="40dp"
+            android:layout_weight="1" />
+
+        <ImageView
+            android:id="@+id/imgvDiceOne"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_weight="1"
+            android:src="@drawable/dice_1" />
+
+        <Space
+            android:layout_width="5dp"
+            android:layout_height="40dp"
+            android:layout_weight="1" />
+
+        <ImageView
+            android:id="@+id/imgvDiceTwo"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_weight="1"
+            android:src="@drawable/dice_1" />
+
+        <Space
+            android:layout_width="5dp"
+            android:layout_height="40dp"
+            android:layout_weight="1" />
+
+        <ImageView
+            android:id="@+id/imgvDiceThree"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_weight="1"
+            android:src="@drawable/dice_1" />
+
+        <Space
+            android:layout_width="5dp"
+            android:layout_height="40dp"
+            android:layout_weight="1" />
+
+        <ImageView
+            android:id="@+id/imgvDiceFour"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_weight="1"
+            android:src="@drawable/dice_1" />
+
+        <Space
+            android:layout_width="5dp"
+            android:layout_height="40dp"
+            android:layout_weight="1" />
+
+        <ImageView
+            android:id="@+id/imgvDiceFive"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_weight="1"
+            android:src="@drawable/dice_1" />
+
+        <Space
+            android:layout_width="5dp"
+            android:layout_height="40dp"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <Space
+        android:layout_width="20dp"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal">
+
+        <Space
+            android:layout_width="10dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/btnMainMenu"
+            android:layout_width="110dp"
+            android:layout_height="50dp"
+            android:layout_gravity="left"
+            android:background="@drawable/button_background"
+            android:text="@string/strMainMenu"
+            android:textColor="@color/colorWhite"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <Space
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/btnPlayAgain"
+            android:layout_width="110dp"
+            android:layout_height="50dp"
+            android:layout_gravity="right"
+            android:background="@drawable/button_background"
+            android:text="@string/strPlayAgain"
+            android:textColor="@color/colorWhite"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <Space
+            android:layout_width="10dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+</LinearLayout>
