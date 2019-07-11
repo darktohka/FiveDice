@@ -18,4 +18,8 @@
     <string name="strTargetScore">Target score</string>
     <string name="strPlay">Play</string>
     <string name="strLeaderboard">LeaderBoard</string>
+    <string name="strMainMenu">Main menu</string>
+    <string name="strPlayAgain">Play again</string>
+    <string name="strWinner">Winner!</string>
+    <string name="strWinnerName">Winner Name</string>
 </resources>

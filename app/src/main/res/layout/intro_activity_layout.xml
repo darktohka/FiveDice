@@ -16,12 +16,12 @@
     <ImageView
         android:id="@+id/imgIntroFiveDice"
         android:layout_width="match_parent"
-        android:layout_height="140dp"
+        android:layout_height="150dp"
         tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
     <Space
         android:layout_width="match_parent"
-        android:layout_height="50dp" />
+        android:layout_height="60dp" />
 
     <EditText
         android:id="@+id/txtPlayerOneName"
