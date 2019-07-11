@@ -22,4 +22,7 @@
     <string name="strPlayAgain">Play again</string>
     <string name="strWinner">Winner!</string>
     <string name="strWinnerName">Winner Name</string>
+    <string name="strPlayerName">Player Name</string>
+    <string name="strPlayerPvPPoint">PvP Point</string>
+    <string name="strPlayerPvEPoint">PvE Point</string>
 </resources>

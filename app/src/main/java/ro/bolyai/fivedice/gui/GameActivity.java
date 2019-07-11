@@ -1,13 +1,9 @@
 package ro.bolyai.fivedice.gui;
 
 import android.content.Intent;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.Dimension;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.util.TypedValue;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -19,8 +15,8 @@ import java.util.List;
 
 import ro.bolyai.fivedice.R;
 import ro.bolyai.fivedice.gui.model.GUIDice;
-import ro.bolyai.fivedice.logic.GameActivityListener;
-import ro.bolyai.fivedice.model.Dice;
+import ro.bolyai.fivedice.gui.model.GUIPlayer;
+import ro.bolyai.fivedice.logic.listener.GameActivityListener;
 import ro.bolyai.fivedice.model.Player;
 
 public class GameActivity extends AppCompatActivity {
@@ -108,12 +104,12 @@ public class GameActivity extends AppCompatActivity {
             targetScore = intent.getIntExtra("targetScore", DEFAULT_TARGET_SCORE);
         }
 
-        playerOne = new Player(
+        playerOne = new GUIPlayer(
                 (TextView) findViewById(R.id.txtPlayerOneName),
                 (TextView) findViewById(R.id.txtPlayerOneScore),
                 (ProgressBar) findViewById(R.id.barPlayerOne),
                 playerOneName, 0);
-        playerTwo = new Player(
+        playerTwo = new GUIPlayer(
                 (TextView) findViewById(R.id.txtPlayerTwoName),
                 (TextView) findViewById(R.id.txtPlayerTwoScore),
                 (ProgressBar) findViewById(R.id.barPlayerTwo),
@@ -180,15 +176,11 @@ public class GameActivity extends AppCompatActivity {
         }
 
         if (currentPlayer == PLAYER_ONE) {
-            playerOne.getTxtPlayerName().setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
-            playerTwo.getTxtPlayerName().setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
-            playerOne.getTxtPlayerName().setTextColor(ContextCompat.getColor(this, R.color.colorKeepInactive));
-            playerTwo.getTxtPlayerName().setTextColor(ContextCompat.getColor(this, android.R.color.black));
+            playerOne.setActivePlayer();
+            playerTwo.setInactivePlayer();
         } else {
-            playerOne.getTxtPlayerName().setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
-            playerTwo.getTxtPlayerName().setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
-            playerOne.getTxtPlayerName().setTextColor(ContextCompat.getColor(this, android.R.color.black));
-            playerTwo.getTxtPlayerName().setTextColor(ContextCompat.getColor(this, R.color.colorKeepInactive));
+            playerOne.setInactivePlayer();
+            playerTwo.setActivePlayer();
         }
 
         setRerollsLeft(REROLL_COUNT);

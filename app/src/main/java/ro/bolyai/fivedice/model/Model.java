@@ -18,5 +18,4 @@ public class Model {
      */
     public static final boolean DEFAULT_BOOL_VALUE = false;
     //endregion
-
 }
