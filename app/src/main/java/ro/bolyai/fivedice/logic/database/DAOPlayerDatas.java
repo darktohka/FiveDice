@@ -2,6 +2,8 @@ package ro.bolyai.fivedice.logic.database;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,16 +60,20 @@ public class DAOPlayerDatas extends ASQLiteKeyWords {
             if(cResultSet!=null){
                 while(cResultSet.moveToFirst()){
                     PlayerDatas playerDatasFromDbTable= this.getCreateTableStatement(cResultSet);
+
+                    allPlayerDatasFromDbTable.add(playerDatasFromDbTable);
                 }
             }
 
 
-        }catch (){
-
+        }catch (SQLiteException sqlEx){
+            Log.e(TBL_NAME, sqlEx.getMessage() + "\n" + sqlEx.getStackTrace().toString());
         }
         finally {
-
+            db.close();
         }
+
+        return allPlayerDatasFromDbTable;
 
     }
 
@@ -91,7 +97,13 @@ public class DAOPlayerDatas extends ASQLiteKeyWords {
         int indexPlayerPvPWins=cResultSet.getColumnIndex(COL_NAME_PLAYER_PVP_WINS);
         int indexPlayerPvEWins=cResultSet.getColumnIndex(COL_NAME_PLAYER_PVE_WINS);
 
-        playerDatasFromDbTable.setId();
+        playerDatasFromDbTable.setId(cResultSet.getInt(indexId));
+        playerDatasFromDbTable.setWinsPvP(cResultSet.getInt(indexPlayerPvPWins));
+        playerDatasFromDbTable.setWinsPvE(cResultSet.getInt(indexPlayerPvEWins));
+
+        playerDatasFromDbTable.setName(cResultSet.getString(indexPlayerName));
+
+        return playerDatasFromDbTable;
     }
 
     //endregion
