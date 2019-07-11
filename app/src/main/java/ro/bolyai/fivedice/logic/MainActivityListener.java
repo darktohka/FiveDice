@@ -1,8 +1,11 @@
 package ro.bolyai.fivedice.logic;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.View;
 
+import ro.bolyai.fivedice.R;
+import ro.bolyai.fivedice.gui.IntroActivity;
 import ro.bolyai.fivedice.gui.MainActivity;
 
 /**
@@ -45,16 +48,50 @@ public class MainActivityListener implements View.OnClickListener {
     /**
      * This function is called when a view is clicked
      * in the MainActivity layout
-     * @param v : {@link View} : Represents the clicked view.
+     * @param view : {@link View} : Represents the clicked view.
      */
     @Override
-    public void onClick(View v) {
+    public void onClick(View view) {
+        switch(view.getId()){
+
+            case R.id.btnPlay:
+                playButtonClicked();
+                break;
+
+            case R.id.btnLeaderboard:
+                leaderboardButtonClicked();
+                break;
+
+        }
+    }
+
+    //endregion
+
+    //region 5. Methods called when a view is clicked
+
+    /**
+     * Called when the play button is clicked
+     */
+    private void playButtonClicked(){
+        //1. EXPLICIT INTENT to start IntroActivity
+        Intent intentToStartIntroActivity = new Intent(mainActivity, IntroActivity.class);
+
+        //2. Place to put Extras
+
+        //3. Start the activity
+        mainActivity.startActivity(intentToStartIntroActivity);
+    }
+
+    /**
+     * Called when the leader board button is clicked
+     */
+    private void leaderboardButtonClicked(){
 
     }
 
     //endregion
 
-    //region 5. Helperfunctions and methods
+    //region last Helperfunctions and methods
     //endregion
 
 }
