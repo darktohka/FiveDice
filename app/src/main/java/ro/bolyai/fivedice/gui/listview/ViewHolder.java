@@ -8,17 +8,17 @@ public class ViewHolder {
     //region 1. Decl and Init
     private TextView txtPlayerName;
 
-    private TextView txtPlayerPvPPoint;
+    private TextView txtPlayerPvPWins;
 
-    private TextView txtPlayerPvEPoint;
+    private TextView txtPlayerPvEWins;
 
     //endregion
 
     //region 2. Constructor
     public ViewHolder(TextView txtPlayerName, TextView txtPlayerPvPPoint, TextView txtPlayerPvEPoint){
         this.txtPlayerName=txtPlayerName;
-        this.txtPlayerPvPPoint=txtPlayerPvPPoint;
-        this.txtPlayerPvEPoint=txtPlayerPvEPoint;
+        this.txtPlayerPvPWins =txtPlayerPvPPoint;
+        this.txtPlayerPvEWins =txtPlayerPvEPoint;
     }
 
     //endregion
@@ -28,21 +28,21 @@ public class ViewHolder {
     public TextView getTxtPlayerName() {
         return txtPlayerName;
     }
-    public TextView getTxtPlayerPvPPoint() {
-        return txtPlayerPvPPoint;
+    public TextView getTxtPlayerPvPWins() {
+        return txtPlayerPvPWins;
     }
-    public TextView getTxtPlayerPvEPoint() {
-        return txtPlayerPvEPoint;
+    public TextView getTxtPlayerPvEWins() {
+        return txtPlayerPvEWins;
     }
 
     public void setTxtPlayerName(TextView txtPlayerName) {
         this.txtPlayerName = txtPlayerName;
     }
-    public void setTxtPlayerPvPPoint(TextView txtPlayerPvPPoint) {
-        this.txtPlayerPvPPoint = txtPlayerPvPPoint;
+    public void setTxtPlayerPvPWins(TextView txtPlayerPvPWins) {
+        this.txtPlayerPvPWins = txtPlayerPvPWins;
     }
-    public void setTxtPlayerPvEPoint(TextView txtPlayerPvEPoint) {
-        this.txtPlayerPvEPoint = txtPlayerPvEPoint;
+    public void setTxtPlayerPvEWins(TextView txtPlayerPvEWins) {
+        this.txtPlayerPvEWins = txtPlayerPvEWins;
     }
     //endregion
 }

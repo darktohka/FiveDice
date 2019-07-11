@@ -164,8 +164,8 @@ public class ListViewAdapter extends BaseAdapter {
         PlayerDatas playerDatas = (PlayerDatas) allPlayerDatas.get(position);
 
         viewHolder.getTxtPlayerName().setText(playerDatas.getName());
-        viewHolder.getTxtPlayerPvPPoint().setText("PvP: " + playerDatas.getWinsPvP());
-        viewHolder.getTxtPlayerPvEPoint().setText("PvE: " + playerDatas.getWinsPvE());
+        viewHolder.getTxtPlayerPvPWins().setText("PvP: " + playerDatas.getWinsPvP());
+        viewHolder.getTxtPlayerPvEWins().setText("PvE: " + playerDatas.getWinsPvE());
 
         return currentListViewItem;
     }
