@@ -16,4 +16,6 @@
     <string name="strPlayerOneName">First player name</string>
     <string name="strTwoPlayerName">Second player name</string>
     <string name="strTargetScore">Target score</string>
+    <string name="strPlay">Play</string>
+    <string name="strLeaderboard">LeaderBoard</string>
 </resources>
