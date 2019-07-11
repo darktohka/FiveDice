@@ -99,7 +99,7 @@ public class DbManager extends SQLiteOpenHelper {
 
     //endregion
 
-    //region 5. REad Customers
+    //region 5. Read Customers
 
     public List<PlayerDatas> getAllPlayerDatas(){
         return this.daoPlayerDatas.getPlayerDatasByIdFromDbTable(this.getWritableDatabase());

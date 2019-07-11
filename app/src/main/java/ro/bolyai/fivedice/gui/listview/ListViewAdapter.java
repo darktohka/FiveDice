@@ -10,6 +10,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import ro.bolyai.fivedice.R;
+import ro.bolyai.fivedice.logic.database.DbManager;
 import ro.bolyai.fivedice.model.PlayerDatas;
 import ro.bolyai.fivedice.testdata.TestData;
 
@@ -80,8 +81,8 @@ public class ListViewAdapter extends BaseAdapter {
         //Generate the LayoutInflater
         this.layoutInflater = LayoutInflater.from(this.context);
 
-        //TODO Link together with the Database
-        this.allPlayerDatas = TestData.getTestPlayerDatas();
+        //Link together with the Database
+        this.allPlayerDatas=DbManager.getInstance(this.context).getAllPlayerDatas();
     }
     //endregion
 
