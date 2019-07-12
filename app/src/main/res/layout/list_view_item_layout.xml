@@ -16,8 +16,20 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/text_background"
+            android:gravity="center"
             android:text="@string/strPlayerName"
             android:textColor="@android:color/black"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/txtPlayerPvPWins"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/text_background"
+            android:gravity="center"
+            android:text="@string/strPlayerPvPPoint"
+            android:textColor="@android:color/holo_red_dark"
             android:textSize="18sp" />
 
         <TextView
@@ -31,16 +43,6 @@
             android:textColor="@android:color/holo_red_dark"
             android:textSize="18sp" />
 
-        <TextView
-            android:id="@+id/txtPlayerPvPWins"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/text_background"
-            android:gravity="center"
-            android:text="@string/strPlayerPvPPoint"
-            android:textColor="@android:color/holo_red_dark"
-            android:textSize="18sp" />
     </LinearLayout>
 
     <Space

@@ -167,8 +167,8 @@ public class ListViewAdapter extends BaseAdapter {
         PlayerScore playerScore = (PlayerScore) allPlayerScores.get(position);
 
         viewHolder.getTxtPlayerName().setText(playerScore.getName());
-        viewHolder.getTxtPlayerPvPWins().setText("PvP: " + playerScore.getWinsPvP());
-        viewHolder.getTxtPlayerPvEWins().setText("PvE: " + playerScore.getWinsPvE());
+        viewHolder.getTxtPlayerPvPWins().setText(""+playerScore.getWinsPvP());
+        viewHolder.getTxtPlayerPvEWins().setText(""+playerScore.getWinsPvE());
 
         return currentListViewItem;
     }
