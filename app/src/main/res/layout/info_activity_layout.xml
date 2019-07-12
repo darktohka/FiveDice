@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:gravity="center"
     tools:context=".gui.activity.InfoActivity"
-    android:background="@drawable/background">
+    android:background="@color/colorWhite">
 
     <ImageView
         android:id="@+id/imgInfoFiveDice"
