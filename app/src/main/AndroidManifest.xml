@@ -9,29 +9,28 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity
             android:name=".gui.activity.GameActivity"
             android:screenOrientation="landscape" />
-
-        <activity android:name=".gui.activity.IntroActivity"
-            android:screenOrientation="landscape"/>
-
+        <activity
+            android:name=".gui.activity.IntroActivity"
+            android:screenOrientation="landscape" />
         <activity
             android:name=".gui.activity.WinnerActivity"
-            android:screenOrientation="landscape"></activity>
-
+            android:screenOrientation="landscape" />
         <activity
             android:name=".gui.activity.LeaderboardActivity"
             android:screenOrientation="landscape" />
-
         <activity
             android:name=".gui.activity.MainActivity"
             android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".gui.activity.InfoActivity"></activity>
     </application>
+
 </manifest>

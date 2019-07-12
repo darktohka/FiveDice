@@ -40,6 +40,12 @@ public class MainActivity extends AppCompatActivity {
     private Button btnLeaderboard;
 
     /**
+     * This {@link Button} is in charge of
+     * opening up the {@link InfoActivity}.
+     */
+    private Button btnInfo;
+
+    /**
      * Handles the clicks of the class
      */
     private MainActivityListener mainActivityListener;
@@ -64,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
 
         btnPlay = findViewById(R.id.btnPlay);
         btnLeaderboard = findViewById(R.id.btnLeaderboard);
+        btnInfo=findViewById(R.id.btnInfo);
 
         //3. Generate the Listener
         mainActivityListener = new MainActivityListener(this);
@@ -71,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
         //4. Add Listener
         btnPlay.setOnClickListener(mainActivityListener);
         btnLeaderboard.setOnClickListener(mainActivityListener);
+        btnInfo.setOnClickListener(mainActivityListener);
     }
     //endregion
 }

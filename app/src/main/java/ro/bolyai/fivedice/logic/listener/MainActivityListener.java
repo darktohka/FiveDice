@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.view.View;
 
 import ro.bolyai.fivedice.R;
+import ro.bolyai.fivedice.gui.activity.InfoActivity;
 import ro.bolyai.fivedice.gui.activity.IntroActivity;
 import ro.bolyai.fivedice.gui.activity.LeaderboardActivity;
 import ro.bolyai.fivedice.gui.activity.MainActivity;
@@ -62,6 +63,10 @@ public class MainActivityListener implements View.OnClickListener {
                 leaderboardButtonClicked();
                 break;
 
+            case R.id.btnInfo:
+                infoButtonClicked();
+                break;
+
         }
     }
 
@@ -93,6 +98,19 @@ public class MainActivityListener implements View.OnClickListener {
 
         //3. Start the activity
         mainActivity.startActivity(intentToStartLeaderboardActivity);
+    }
+
+    /**
+     * Called when the info button is clicked
+     */
+    private void infoButtonClicked(){
+        //1. EXPLICIT INTENT to start the InfoActivity
+        Intent intentToStartInfoActivity = new Intent(mainActivity, InfoActivity.class);
+
+        //2. Place to put Extras
+
+        //3. Start the activity
+        mainActivity.startActivity(intentToStartInfoActivity);
     }
 
     //endregion

@@ -46,4 +46,19 @@
         android:textColor="@color/colorWhite"
         android:textSize="16sp"
         android:textStyle="bold" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="12dp" />
+
+    <Button
+        android:id="@+id/btnInfo"
+        android:layout_width="174dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:background="@drawable/button_background"
+        android:text="@string/strInfo"
+        android:textColor="@color/colorWhite"
+        android:textSize="16sp"
+        android:textStyle="bold" />
 </LinearLayout>
