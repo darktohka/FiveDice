@@ -31,6 +31,12 @@ public class GameActivityListener implements View.OnClickListener {
     //endregion
 
     //region 3. Getters and setters
+
+    /**
+     * Returns the working reference of our {@link GameActivity}.
+     *
+     * @return activity : {@link GameActivity} : Working reference
+     */
     public GameActivity getActivity() {
         return activity;
     }
@@ -49,6 +55,7 @@ public class GameActivityListener implements View.OnClickListener {
             return;
         }
 
+        // Roll the dice
         if (activity.isShowingDice()) {
             activity.endShowDice();
         } else {

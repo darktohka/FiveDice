@@ -33,6 +33,7 @@ public class MainActivityListener implements View.OnClickListener {
     /**
      * Default Constructor sets the working
      * reference of the current activity
+     *
      * @param mainActivity : {@link MainActivity} : Working reference
      */
     public MainActivityListener(MainActivity mainActivity) {
@@ -49,12 +50,12 @@ public class MainActivityListener implements View.OnClickListener {
     /**
      * This function is called when a view is clicked
      * in the MainActivity layout
+     *
      * @param view : {@link View} : Represents the clicked view.
      */
     @Override
     public void onClick(View view) {
-        switch(view.getId()){
-
+        switch (view.getId()) {
             case R.id.btnPlay:
                 playButtonClicked();
                 break;
@@ -66,7 +67,6 @@ public class MainActivityListener implements View.OnClickListener {
             case R.id.btnInfo:
                 infoButtonClicked();
                 break;
-
         }
     }
 
@@ -77,7 +77,7 @@ public class MainActivityListener implements View.OnClickListener {
     /**
      * Called when the play button is clicked
      */
-    private void playButtonClicked(){
+    private void playButtonClicked() {
         //1. EXPLICIT INTENT to start IntroActivity
         Intent intentToStartIntroActivity = new Intent(mainActivity, IntroActivity.class);
 
@@ -90,7 +90,7 @@ public class MainActivityListener implements View.OnClickListener {
     /**
      * Called when the leader board button is clicked
      */
-    private void leaderboardButtonClicked(){
+    private void leaderboardButtonClicked() {
         //1. EXPLICIT INTENT to start the LeaderboardActivity
         Intent intentToStartLeaderboardActivity = new Intent(mainActivity, LeaderboardActivity.class);
 
@@ -103,7 +103,7 @@ public class MainActivityListener implements View.OnClickListener {
     /**
      * Called when the info button is clicked
      */
-    private void infoButtonClicked(){
+    private void infoButtonClicked() {
         //1. EXPLICIT INTENT to start the InfoActivity
         Intent intentToStartInfoActivity = new Intent(mainActivity, InfoActivity.class);
 

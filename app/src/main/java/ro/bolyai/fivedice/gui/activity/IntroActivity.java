@@ -12,19 +12,27 @@ import ro.bolyai.fivedice.R;
 import ro.bolyai.fivedice.logic.listener.IntroActivityListener;
 
 /**
- * This activity shows up when you select play in the MainActivity
- * Here you can select the gamemode, type in the username(s) and
+ * This activity shows up when you select play in the MainActivity.
+ * <p>
+ * Here you can select the game mode, type in the player names and
  * proceed to the GameActivity
  */
 public class IntroActivity extends AppCompatActivity {
 
     //region 0. Constants
-    private static final int MAXIMUM_CHARACTER = 16;
+    /**
+     * The maximum amount of characters in a player name.
+     */
+    private static final int MAXIMUM_CHARACTER = 24;
 
-    private static final int MINIMUM_TARGET_SCORE = 40;
-    private static final int MAXIMUM_TARGET_SCORE = 1500;
-
+    /**
+     * A constant representing the PvP game mode.
+     */
     public static final int GAMEMODE_PVP = 0;
+
+    /**
+     * A constant representing the AI game mode.
+     */
     public static final int GAMEMODE_WITH_AI = 1;
     //endregion
 
@@ -35,13 +43,15 @@ public class IntroActivity extends AppCompatActivity {
     private IntroActivityListener introActivityListener;
 
     /**
-     * Input fields to type in the player(s) name
-     * and the target score
-     * Player one name: {@link EditText}
-     * Player two name: {@link EditText}
-     * Target Score: {@link EditText}
+     * The input field responsible for holding
+     * the first player's name.
      */
     private EditText txtPlayerOneName;
+
+    /**
+     * The input field responsible for holding
+     * the second player's name.
+     */
     private EditText txtPlayerTwoName;
 
     /**
@@ -50,7 +60,7 @@ public class IntroActivity extends AppCompatActivity {
     private Button btnStartGame;
 
     /**
-     * {@link Spinner} to select the gamemode
+     * {@link Spinner} to select the game mode
      */
     private Spinner spGamemode;
 
@@ -59,15 +69,25 @@ public class IntroActivity extends AppCompatActivity {
      */
     private Spinner spTargetScore;
 
-    private String strPlayerOneName;
-    private String strPlayerTwoName;
-
+    /**
+     * The target score of the next round.
+     */
     private int iTargetScore;
 
-    private int iGamemode;
+    /**
+     * The game mode of the next round.
+     * Can be either {@link IntroActivity#GAMEMODE_PVP} or {@link IntroActivity#GAMEMODE_WITH_AI}.
+     */
+    private int iGameMode;
     //endregion
 
     //region 2. Lifecycle
+
+    /**
+     * This is the first method ran after the constructor.
+     *
+     * @param savedInstanceState : {@link Bundle} : Our saved instance state.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,7 +117,6 @@ public class IntroActivity extends AppCompatActivity {
      * It generates the Widgets:
      * {@link EditText}s and the start {@link Button}
      */
-
     public void generateWidgets() {
         this.txtPlayerOneName = findViewById(R.id.txtPlayerOneName);
         this.txtPlayerTwoName = findViewById(R.id.txtPlayerTwoName);
@@ -109,15 +128,14 @@ public class IntroActivity extends AppCompatActivity {
 
     /**
      * It checks the validity of the inputted data.
-     * If there's any problem, returns the problem message as a {@link String}
+     * If there's any problem, returns the problem message as a {@link String}.
      *
-     * @return : {@link String}: problem
+     * @return strProblem : {@link String} : the problem
      */
     public String checkValidity() {
         String strProblem = "";
-
-        this.strPlayerOneName = this.txtPlayerOneName.getText().toString();
-        this.strPlayerTwoName = this.txtPlayerTwoName.getText().toString();
+        String strPlayerOneName = getPlayerOneName();
+        String strPlayerTwoName = getPlayerTwoName();
 
         if (strPlayerOneName.isEmpty()) {
             strProblem += "The first player's name is empty!\n";
@@ -125,7 +143,7 @@ public class IntroActivity extends AppCompatActivity {
             strProblem += "The first player's name is too long!\n";
         }
 
-        if (iGamemode == GAMEMODE_PVP) {
+        if (iGameMode == GAMEMODE_PVP) {
             if (strPlayerTwoName.isEmpty()) {
                 strProblem += "The second player's name is empty!\n";
             } else if (strPlayerOneName.equals(strPlayerTwoName)) {
@@ -137,11 +155,12 @@ public class IntroActivity extends AppCompatActivity {
             }
         }
 
-        return strProblem;
+        return strProblem.trim();
     }
 
     /**
-     * Initializes the items in the gamemode selection {@link Spinner}
+     * Initializes the {@link Spinner}s of this activity,
+     * namely the game mode spinner and the target score spinner.
      */
     private void initSpinners() {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.gamemodes, android.R.layout.simple_spinner_item);
@@ -155,14 +174,18 @@ public class IntroActivity extends AppCompatActivity {
         updateTargetScore();
     }
 
+    /**
+     * Updates the target score of the next game
+     * based on the {@link IntroActivity#spTargetScore}'s value.
+     */
     public void updateTargetScore() {
         String strValue = spTargetScore.getSelectedItem().toString();
         iTargetScore = Integer.valueOf(strValue.replaceAll("[^0-9]", ""));
     }
 
     /**
-     * Enables and sets visible txtPlayerTwoName {@link EditText} when Player versus Player
-     * gamemode is selected
+     * Enables and shows {@link IntroActivity#txtPlayerOneName} when
+     * the Player versus Player game mode is selected
      */
     public void enableTxtPlayerTwoName() {
         txtPlayerTwoName.setEnabled(true);
@@ -170,52 +193,77 @@ public class IntroActivity extends AppCompatActivity {
     }
 
     /**
-     * Disables and sets invisible txtPlayerTwoName {@link EditText} when Player versus AI
-     * gamemode is selected
+     * Disables and hides {@link IntroActivity#txtPlayerTwoName} when
+     * the Player versus AI game mode is selected
      */
     public void disableTxtPlayerTwoName() {
         txtPlayerTwoName.setEnabled(false);
         txtPlayerTwoName.setVisibility(View.GONE);
     }
-
     //endregion
 
     //region 5. Getters
 
+    /**
+     * Returns the {@link Spinner} responsible for
+     * holding the next round's target score.
+     *
+     * @return spTargetScore : {@link Spinner} : Target score spinner
+     */
     public Spinner getSpTargetScore() {
         return spTargetScore;
     }
 
+    /**
+     * Returns the first player's name.
+     *
+     * @return strPlayerOneName : {@link String} : First player name
+     */
     public String getPlayerOneName() {
-        return strPlayerOneName;
+        return txtPlayerOneName.getText().toString().trim();
     }
 
+    /**
+     * Returns the second player's name.
+     *
+     * @return strPlayerTwoName : {@link String} : Second player name
+     */
     public String getPlayerTwoName() {
-        if (iGamemode == GAMEMODE_WITH_AI) {
+        if (iGameMode == GAMEMODE_WITH_AI) {
             return getString(R.string.computer_player_name);
         } else {
-            return strPlayerTwoName;
+            return txtPlayerTwoName.getText().toString().trim();
         }
     }
 
+    /**
+     * Returns the next game's target score.
+     *
+     * @return iTargetScore : int : Target score
+     */
     public int getTargetScore() {
         return iTargetScore;
     }
 
-    public int getGamemode() {
-        return iGamemode;
+    /**
+     * Returns the next game's game mode.
+     *
+     * @return iGameMode : int : Either {@link IntroActivity#GAMEMODE_PVP} or {@link IntroActivity#GAMEMODE_WITH_AI}
+     */
+    public int getGameMode() {
+        return iGameMode;
     }
-
     //endregion
 
     //region 6. Setters
-    public void setGamemode(int iGamemode) {
-        this.iGamemode = iGamemode;
-    }
 
-    public void setTargetScore(int iTargetScore) {
-        this.iTargetScore = iTargetScore;
+    /**
+     * Sets the next game's game mode.
+     *
+     * @param iGameMode : int : Either {@link IntroActivity#GAMEMODE_PVP} or {@link IntroActivity#GAMEMODE_WITH_AI}
+     */
+    public void setGameMode(int iGameMode) {
+        this.iGameMode = iGameMode;
     }
-
     //endregion
 }

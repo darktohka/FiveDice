@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
 
         btnPlay = findViewById(R.id.btnPlay);
         btnLeaderboard = findViewById(R.id.btnLeaderboard);
-        btnInfo=findViewById(R.id.btnInfo);
+        btnInfo = findViewById(R.id.btnInfo);
 
         //3. Generate the Listener
         mainActivityListener = new MainActivityListener(this);

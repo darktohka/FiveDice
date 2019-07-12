@@ -84,7 +84,7 @@ public class IntroActivityListener implements View.OnClickListener,
     public void onItemSelected(AdapterView<?> parentSpinner, View currentSelectedItem, int index, long id) {
         switch (parentSpinner.getId()) {
             case R.id.spGamemode:
-                activity.setGamemode(index);
+                activity.setGameMode(index);
 
                 if (index == activity.GAMEMODE_WITH_AI) {
                     activity.disableTxtPlayerTwoName();
@@ -123,7 +123,7 @@ public class IntroActivityListener implements View.OnClickListener,
         intent.putExtra("playerOneName", activity.getPlayerOneName());
         intent.putExtra("playerTwoName", activity.getPlayerTwoName());
         intent.putExtra("targetScore", activity.getTargetScore());
-        intent.putExtra("computer", activity.getGamemode() == IntroActivity.GAMEMODE_WITH_AI);
+        intent.putExtra("computer", activity.getGameMode() == IntroActivity.GAMEMODE_WITH_AI);
         activity.startActivity(intent);
 
     }

@@ -1,10 +1,9 @@
 package ro.bolyai.fivedice.gui.activity;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import ro.bolyai.fivedice.R;
 
@@ -27,10 +26,9 @@ public class InfoActivity extends AppCompatActivity {
         this.setContentView(R.layout.info_activity_layout);
 
         this.imgFiveDiceInfo = findViewById(R.id.imgInfoFiveDice);
-        this.txtInfoOut=findViewById(R.id.txtvInfoOut);
+        this.txtInfoOut = findViewById(R.id.txtvInfoOut);
 
         this.txtInfoOut.setFocusable(false);
-
 
 
     }

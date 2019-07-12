@@ -10,30 +10,30 @@ import ro.bolyai.fivedice.gui.activity.LeaderboardActivity;
  * a single ListViewItem which is going to
  * be generated in the ListViewAdapter.
  * <p>
- * It has no Logic, no generation of
- * Objects/Widgets what so ever.
+ * It has no logic, no generation of
+ * Objects/Widgets whatsoever.
  */
 public class ViewHolder {
 
     //region 1. Decl and Init
 
     /**
-     * Will display the {@link ro.bolyai.fivedice.model.Player} Names in a single
-     * ListViewItem. Which is integerated / shown in
-     * the ListView Widget in the {@link LeaderboardActivity}
+     * Will display the {@link ro.bolyai.fivedice.model.PlayerScore} Names in a single
+     * ListViewItem, which is integrated / shown in
+     * the ListView widget in the {@link LeaderboardActivity}
      */
     private TextView txtPlayerName;
 
     /**
-     * Will display the {@link ro.bolyai.fivedice.model.Player} PvP Wins
-     * in a single ListViewItem. Which is integrateed / shown in
-     * the ListView Widget in the {@link LeaderboardActivity}
+     * Will display the {@link ro.bolyai.fivedice.model.PlayerScore} PvP Wins
+     * in a single ListViewItem, which is integrated / shown in
+     * the ListView wiiget in the {@link LeaderboardActivity}
      */
     private TextView txtPlayerPvPWins;
 
     /**
-     * Will display the {@link ro.bolyai.fivedice.model.Player} PvE Wins
-     * in a single ListViewItem. Which is integrateed / shown in
+     * Will display the {@link ro.bolyai.fivedice.model.PlayerScore} PvE Wins
+     * in a single ListViewItem, which is integrated / shown in
      * the ListView Widget in the {@link LeaderboardActivity}
      */
     private TextView txtPlayerPvEWins;
@@ -43,10 +43,10 @@ public class ViewHolder {
     //region 2. Constructor
 
     /**
-     * Default Constructor to set the Widget referenves from
+     * Default Constructor to set the Widget references from
      * a single ListViewItem directly
      *
-     * @param txtPlayerName : {@link TextView} : {@link ro.bolyai.fivedice.model.Player} name
+     * @param txtPlayerName    : {@link TextView} : {@link ro.bolyai.fivedice.model.Player} name
      * @param txtPlayerPvPWins : {@link TextView} : {@link ro.bolyai.fivedice.model.Player} PvP Wins
      * @param txtPlayerPvEWins : {@link TextView} : {@link ro.bolyai.fivedice.model.Player} PvE Wins
      */

@@ -145,8 +145,8 @@ public class DAOPlayerScore extends ASQLiteKeyWords {
         PlayerScore playerScoreFromTable = null;
 
         try {
-            String   strWhereClause = COL_NAME_PLAYER_NAME + EQUALS_OPERATOR_INC_PLACE_HOLDER;
-            String[] strWhereArgs   = {playerName};
+            String strWhereClause = COL_NAME_PLAYER_NAME + EQUALS_OPERATOR_INC_PLACE_HOLDER;
+            String[] strWhereArgs = {playerName};
 
             Cursor cResultSet = db.query(TBL_NAME,
                     null,
@@ -241,8 +241,8 @@ public class DAOPlayerScore extends ASQLiteKeyWords {
 
         try {
             ContentValues cvPlayerScore = this.getContentValuesFromPlayerScore(playerScoreToUpdate);
-            String        strWhereClaus = COL_NAME_ID + EQUALS_OPERATOR_INC_PLACE_HOLDER;
-            String[]      strWhereArgs  = {String.valueOf(playerScoreToUpdate.getId())};
+            String strWhereClaus = COL_NAME_ID + EQUALS_OPERATOR_INC_PLACE_HOLDER;
+            String[] strWhereArgs = {String.valueOf(playerScoreToUpdate.getId())};
 
             iCountOfAffectedRows = db.update(TBL_NAME, cvPlayerScore, strWhereClaus, strWhereArgs);
         } catch (SQLException sqlEx) {
@@ -271,8 +271,8 @@ public class DAOPlayerScore extends ASQLiteKeyWords {
     private PlayerScore getPlayerScoreTableStatement(Cursor cResultSet) {
         PlayerScore playerScoreFromDbTable = new PlayerScore();
 
-        int indexId            = cResultSet.getColumnIndex(COL_NAME_ID);
-        int indexPlayerName    = cResultSet.getColumnIndex(COL_NAME_PLAYER_NAME);
+        int indexId = cResultSet.getColumnIndex(COL_NAME_ID);
+        int indexPlayerName = cResultSet.getColumnIndex(COL_NAME_PLAYER_NAME);
         int indexPlayerPvPWins = cResultSet.getColumnIndex(COL_NAME_PLAYER_PVP_WINS);
         int indexPlayerPvEWins = cResultSet.getColumnIndex(COL_NAME_PLAYER_PVE_WINS);
 

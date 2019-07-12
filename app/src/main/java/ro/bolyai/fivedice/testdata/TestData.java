@@ -21,6 +21,7 @@ public class TestData {
     //endregion
 
     //2. Test data
+
     /**
      * Returns a {@link List} of test {@link PlayerScore}s.
      *

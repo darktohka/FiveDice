@@ -34,8 +34,6 @@ public class DbManager extends SQLiteOpenHelper {
         this.daoPlayerScore = new DAOPlayerScore();
 
         this.getWritableDatabase();
-
-        Log.d(TAG, "Generated the database and all the DAO Objects");
     }
 
     //endregion
