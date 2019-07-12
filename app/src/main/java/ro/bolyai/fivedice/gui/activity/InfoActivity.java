@@ -30,7 +30,7 @@ public class InfoActivity extends AppCompatActivity {
         this.txtInfoOut=findViewById(R.id.txtvInfoOut);
 
         this.txtInfoOut.setFocusable(false);
-        //this.imgFiveDiceInfo.
+
 
 
     }

@@ -10,15 +10,20 @@
 
     <ImageView
         android:id="@+id/imgInfoFiveDice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@android:drawable/ic_delete" />
+        android:layout_width="300dp"
+        android:layout_height="250dp"
+        android:layout_weight="1"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/logo" />
 
     <EditText
         android:id="@+id/txtvInfoOut"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginLeft="@dimen/iWidth"
+        android:layout_marginRight="@dimen/iWidth"
+        android:layout_weight="1"
         android:ems="10"
         android:inputType="textMultiLine"
         android:maxLines="@integer/iCustomerNameLine"
@@ -26,8 +31,6 @@
         android:text="@string/strInfoOut"
         android:textColor="@color/black_color"
         android:textSize="20sp"
-        android:layout_marginLeft="@dimen/iWidth"
-        android:layout_marginRight="@dimen/iWidth"
-        />
+        android:visibility="visible" />
 
 </LinearLayout>
