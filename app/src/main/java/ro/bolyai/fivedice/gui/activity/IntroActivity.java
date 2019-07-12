@@ -165,7 +165,7 @@ public class IntroActivity extends AppCompatActivity {
      */
     public void disableTxtPlayerTwoName(){
         txtPlayerTwoName.setEnabled(false);
-        txtPlayerTwoName.setVisibility(View.INVISIBLE);
+        txtPlayerTwoName.setVisibility(View.GONE);
     }
 
     //endregion
