@@ -2,6 +2,7 @@ package ro.bolyai.fivedice.gui.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -13,7 +14,7 @@ public class InfoActivity extends AppCompatActivity {
     //endregion
 
     //region 1. Decl and Init
-    private TextView txtvInfoOut;
+    private EditText txtInfoOut;
 
     private ImageView imgFiveDice;
     //endregion
@@ -26,7 +27,9 @@ public class InfoActivity extends AppCompatActivity {
         this.setContentView(R.layout.info_activity_layout);
 
         this.imgFiveDice = findViewById(R.id.imgFiveDice);
-        this.txtvInfoOut=findViewById(R.id.txtvInfoOut);
+        this.txtInfoOut=findViewById(R.id.txtvInfoOut);
+
+        this.txtInfoOut.setFocusable(false);
 
 
     }
