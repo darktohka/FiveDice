@@ -59,11 +59,9 @@ public class MainActivityListener implements View.OnClickListener {
             case R.id.btnPlay:
                 playButtonClicked();
                 break;
-
             case R.id.btnLeaderboard:
                 leaderboardButtonClicked();
                 break;
-
             case R.id.btnInfo:
                 infoButtonClicked();
                 break;
@@ -115,7 +113,7 @@ public class MainActivityListener implements View.OnClickListener {
 
     //endregion
 
-    //region last Helperfunctions and methods
+    //region 6. Helper functions and methods
     //endregion
 
 }
