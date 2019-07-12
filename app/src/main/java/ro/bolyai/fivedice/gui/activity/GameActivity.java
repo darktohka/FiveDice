@@ -1,6 +1,7 @@
 package ro.bolyai.fivedice.gui.activity;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -10,7 +11,9 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import ro.bolyai.fivedice.R;
 import ro.bolyai.fivedice.gui.model.GUIDice;
@@ -159,6 +162,11 @@ public class GameActivity extends AppCompatActivity {
      * A list containing the first player's dice scores.
      */
     private List<Integer> firstDice;
+
+    /**
+     * A map containing all of our game sounds.
+     */
+    private Map<String, MediaPlayer> sounds = new HashMap<String, MediaPlayer>();
     //endregion
 
     //region 2. Lifecycle
@@ -184,6 +192,9 @@ public class GameActivity extends AppCompatActivity {
 
         timerHandler = new Handler();
 
+        sounds.clear();
+        sounds.put("rollDiceOne", MediaPlayer.create(this, R.raw.rolldice_one));
+
         // 3. Initialize game
         if (savedInstanceState == null) {
             initializeGame();
@@ -192,6 +203,21 @@ public class GameActivity extends AppCompatActivity {
         // 4. Initialize listener
         gameActivityListener = new GameActivityListener(this);
         btnRoll.setOnClickListener(gameActivityListener);
+    }
+
+    /**
+     * This is ran when the activity is destroyed.
+     *
+     * We need to release our MediaPlayer sounds!
+     */
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+        for (MediaPlayer sound : sounds.values()) {
+            sound.stop();
+            sound.release();
+        }
     }
 
     /**
@@ -661,6 +687,8 @@ public class GameActivity extends AppCompatActivity {
             // We can't do anything at the moment.
             return;
         }
+
+        sounds.get("rollDiceOne").stop();
 
         // Update the GUI accordingly.
         rollingDice = true;
