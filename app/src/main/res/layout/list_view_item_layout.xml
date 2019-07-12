@@ -2,39 +2,36 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="horizontal">
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/txtPlayerName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_weight="1"
+        android:background="@drawable/text_background"
+        android:text="@string/strPlayerName"
+        android:textColor="@android:color/black"
+        android:textSize="18sp" />
 
-        <TextView
-            android:id="@+id/txtPlayerName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/strPlayerName"
-            android:textColor="@android:color/black"
-            android:textSize="18sp" />
+    <TextView
+        android:id="@+id/txtPlayerPvEWins"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@drawable/text_background"
+        android:text="@string/strPlayerPvEPoint"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="18sp" />
 
-        <TextView
-            android:id="@+id/txtPlayerPvPWins"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.7"
-            android:text="@string/strPlayerPvPPoint"
-            android:textColor="@android:color/holo_red_dark"
-            android:textSize="16sp" />
-
-        <TextView
-            android:id="@+id/txtPlayerPvEWins"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.7"
-            android:text="@string/strPlayerPvEPoint"
-            android:textColor="@android:color/holo_red_dark"
-            android:textSize="16sp" />
-    </LinearLayout>
+    <TextView
+        android:id="@+id/txtPlayerPvPWins"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@drawable/text_background"
+        android:text="@string/strPlayerPvPPoint"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="18sp" />
 
 </LinearLayout>

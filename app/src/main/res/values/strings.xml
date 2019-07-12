@@ -23,8 +23,8 @@
     <string name="strWinner">Winner!</string>
     <string name="strWinnerName">Winner Name</string>
     <string name="strPlayerName">Player Name</string>
-    <string name="strPlayerPvPPoint">PvP Point</string>
-    <string name="strPlayerPvEPoint">PvE Point</string>
+    <string name="strPlayerPvPPoint">PvP Wins</string>
+    <string name="strPlayerPvEPoint">PvE Wins</string>
     <string name="computer_player_name">The Computer</string>
     <string name="strInfo">Informations</string>
     <string name="strInfoOut">Authors:\n
