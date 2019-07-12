@@ -43,7 +43,6 @@ public class IntroActivity extends AppCompatActivity {
      */
     private EditText txtPlayerOneName;
     private EditText txtPlayerTwoName;
-    private EditText txtTargetScore;
 
     /**
      * {@link Button} to start the game.
@@ -55,10 +54,15 @@ public class IntroActivity extends AppCompatActivity {
      */
     private Spinner spGamemode;
 
+    /**
+     * {@link Spinner} to select the target points
+     */
+    private Spinner spTargetScore;
+
     private String strPlayerOneName;
     private String strPlayerTwoName;
 
-    private int iTargetScore = 0;
+    private int iTargetScore;
 
     private int iGamemode;
     //endregion
@@ -67,17 +71,23 @@ public class IntroActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         //1. Set the layout
         this.setContentView(R.layout.intro_activity_layout);
+
         //2. Generate Listener
         this.introActivityListener = new IntroActivityListener(this);
+
         //3. Generate Widgets
         generateWidgets();
+
         //4. Initialize spinner items
-        initGamemodeSpinner();
+        initSpinners();
+
         //5. Set the listeners
         btnStartGame.setOnClickListener(introActivityListener);
         spGamemode.setOnItemSelectedListener(introActivityListener);
+        spTargetScore.setOnItemSelectedListener(introActivityListener);
     }
     //endregion
 
@@ -91,7 +101,7 @@ public class IntroActivity extends AppCompatActivity {
     public void generateWidgets() {
         this.txtPlayerOneName = findViewById(R.id.txtPlayerOneName);
         this.txtPlayerTwoName = findViewById(R.id.txtPlayerTwoName);
-        this.txtTargetScore = findViewById(R.id.txtTargetScore);
+        this.spTargetScore = findViewById(R.id.spTargetScore);
 
         this.btnStartGame = findViewById(R.id.btnStartGame);
         this.spGamemode = findViewById(R.id.spGamemode);
@@ -108,33 +118,23 @@ public class IntroActivity extends AppCompatActivity {
 
         this.strPlayerOneName = this.txtPlayerOneName.getText().toString();
         this.strPlayerTwoName = this.txtPlayerTwoName.getText().toString();
-        this.iTargetScore = 0;
 
-        if(strPlayerOneName.equals(strPlayerTwoName))
-            strProblem+="Change the name!";
+        if (strPlayerOneName.isEmpty()) {
+            strProblem += "The first player's name is empty!\n";
+        } else if (strPlayerOneName.length() > MAXIMUM_CHARACTER) {
+            strProblem += "The first player's name is too long!\n";
+        }
 
-        if (txtTargetScore.getText().toString().isEmpty()) {
-            strProblem += "The target score is empty!\n";
-        } else {
-            try {
-                this.iTargetScore = Integer.valueOf(this.txtTargetScore.getText().toString());
-            } catch (Exception e) {
-                strProblem += "The target score is invalid!\n";
+        if (iGamemode == GAMEMODE_PVP) {
+            if (strPlayerTwoName.isEmpty()) {
+                strProblem += "The second player's name is empty!\n";
+            } else if (strPlayerOneName.equals(strPlayerTwoName)) {
+                strProblem += "The two players must have different names!\n";
             }
-        }
 
-        if (strPlayerOneName.isEmpty() || (strPlayerTwoName.isEmpty() && iGamemode == GAMEMODE_PVP)) {
-            strProblem += "The name is empty!\n";
-        }
-
-        if (strPlayerOneName.length() > MAXIMUM_CHARACTER || strPlayerTwoName.length() > MAXIMUM_CHARACTER) {
-            strProblem += "The name is too long!\n";
-        }
-
-        if (iTargetScore < MINIMUM_TARGET_SCORE) {
-            strProblem += "The target score is too low!\n";
-        } else if (iTargetScore > MAXIMUM_TARGET_SCORE) {
-            strProblem += "The target score is too high!\n";
+            if (strPlayerTwoName.length() > MAXIMUM_CHARACTER) {
+                strProblem += "The second player's name is too long!\n";
+            }
         }
 
         return strProblem;
@@ -143,18 +143,28 @@ public class IntroActivity extends AppCompatActivity {
     /**
      * Initializes the items in the gamemode selection {@link Spinner}
      */
-    private void initGamemodeSpinner() {
+    private void initSpinners() {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.gamemodes, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spGamemode.setAdapter(adapter);
 
+        adapter = ArrayAdapter.createFromResource(this, R.array.scores, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spTargetScore.setAdapter(adapter);
+
+        updateTargetScore();
+    }
+
+    public void updateTargetScore() {
+        String strValue = spTargetScore.getSelectedItem().toString();
+        iTargetScore = Integer.valueOf(strValue.replaceAll("[^0-9]", ""));
     }
 
     /**
      * Enables and sets visible txtPlayerTwoName {@link EditText} when Player versus Player
      * gamemode is selected
      */
-    public void enableTxtPlayerTwoName(){
+    public void enableTxtPlayerTwoName() {
         txtPlayerTwoName.setEnabled(true);
         txtPlayerTwoName.setVisibility(View.VISIBLE);
     }
@@ -163,7 +173,7 @@ public class IntroActivity extends AppCompatActivity {
      * Disables and sets invisible txtPlayerTwoName {@link EditText} when Player versus AI
      * gamemode is selected
      */
-    public void disableTxtPlayerTwoName(){
+    public void disableTxtPlayerTwoName() {
         txtPlayerTwoName.setEnabled(false);
         txtPlayerTwoName.setVisibility(View.GONE);
     }
@@ -171,6 +181,11 @@ public class IntroActivity extends AppCompatActivity {
     //endregion
 
     //region 5. Getters
+
+    public Spinner getSpTargetScore() {
+        return spTargetScore;
+    }
+
     public String getPlayerOneName() {
         return strPlayerOneName;
     }
@@ -194,9 +209,12 @@ public class IntroActivity extends AppCompatActivity {
     //endregion
 
     //region 6. Setters
-
     public void setGamemode(int iGamemode) {
         this.iGamemode = iGamemode;
+    }
+
+    public void setTargetScore(int iTargetScore) {
+        this.iTargetScore = iTargetScore;
     }
 
     //endregion

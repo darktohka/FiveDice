@@ -73,24 +73,35 @@ public class IntroActivityListener implements View.OnClickListener,
     /**
      * Called when an item is selected in the dropdown list
      * Enables or disables the txtSecondPlayerName in function to the selected gamemode
-     * @param parentSpinner : {@link AdapterView} The AdapterView (Spinner) where the item is selected
+     *
+     * @param parentSpinner       : {@link AdapterView} The AdapterView (Spinner) where the item is selected
      * @param currentSelectedItem : {@link View} The selected viwe within the AdapterView that was clicked
      *                            (this wil be a view provided by the adapter)
-     * @param index : int : The index of the clicked SpinnerItem which the gamemode is selected
-     * @param id : long : Gamemode Id
+     * @param index               : int : The index of the clicked SpinnerItem which the gamemode is selected
+     * @param id                  : long : The id of the clicked SpinnerItem
      */
     @Override
     public void onItemSelected(AdapterView<?> parentSpinner, View currentSelectedItem, int index, long id) {
-        //Toast.makeText(activity, "Index: " + String.valueOf(index) + " ID: " + String.valueOf(id), Toast.LENGTH_LONG).show();
-        activity.setGamemode(index);
-        if(index == activity.GAMEMODE_WITH_AI)
-            activity.disableTxtPlayerTwoName();
-        else
-            activity.enableTxtPlayerTwoName();
+        switch (parentSpinner.getId()) {
+            case R.id.spGamemode:
+                activity.setGamemode(index);
+
+                if (index == activity.GAMEMODE_WITH_AI) {
+                    activity.disableTxtPlayerTwoName();
+                } else {
+                    activity.enableTxtPlayerTwoName();
+                }
+
+                break;
+            case R.id.spTargetScore:
+                activity.updateTargetScore();
+                break;
+        }
     }
 
     /**
      * Called when Nothing is selected
+     *
      * @param parentSpinner : {@link AdapterView} The AdapterView (Spinner) where the item is selected
      */
     @Override

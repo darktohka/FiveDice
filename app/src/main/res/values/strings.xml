@@ -46,12 +46,28 @@ In every turn each player has 3 rounds to throw the dices. After the first throw
         After the 3 throws the points will be added from the dices and that will be the players final score.\n
 When one of the players reach the given score threshold and both player has same rounds
         the game will end and the player with the biggest score will be the winner.\n
-The gameplay will be made more exciting by the addition of sound effects and animations. </string>
+The gameplay will be made more exciting by the addition of sound effects and animations.</string>
 
-    <!-- Items of the gamemode selection spinner -->
+    <!-- Items of the game mode selection spinner -->
     <string-array name="gamemodes">
         <item>Player versus Player</item>
         <item>Player versus AI</item>
+    </string-array>
+
+    <!-- Items of the score selection spinner -->
+    <string-array name="scores">
+        <item>Reach 20 points</item>
+        <item>Reach 40 points</item>
+        <item>Reach 80 points</item>
+        <item>Reach 100 points</item>
+        <item>Reach 125 points</item>
+        <item>Reach 150 points</item>
+        <item>Reach 200 points</item>
+        <item>Reach 250 points</item>
+        <item>Reach 300 points</item>
+        <item>Reach 500 points</item>
+        <item>Reach 750 points</item>
+        <item>Reach 1000 points</item>
     </string-array>
 
 </resources>

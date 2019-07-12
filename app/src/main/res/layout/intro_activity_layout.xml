@@ -34,6 +34,19 @@
 
     <Space
         android:layout_width="match_parent"
+        android:layout_height="10dp" />
+
+    <Spinner
+        android:id="@+id/spTargetScore"
+        android:layout_width="255dp"
+        android:layout_height="30dp"
+        android:layout_gravity="center"
+        android:alpha="0.7"
+        android:background="@drawable/text_background"
+        android:textAlignment="center" />
+
+    <Space
+        android:layout_width="match_parent"
         android:layout_height="23dp" />
 
     <EditText
@@ -58,7 +71,6 @@
         android:layout_width="255dp"
         android:layout_height="30dp"
         android:layout_gravity="center"
-        android:layout_marginBottom="10dp"
         android:alpha="0.7"
         android:background="@drawable/text_background"
         android:ems="10"
@@ -66,19 +78,6 @@
         android:hint="@string/strTwoPlayerName"
         android:inputType="textPersonName"
         android:textAlignment="gravity" />
-
-    <EditText
-        android:id="@+id/txtTargetScore"
-        android:layout_width="255dp"
-        android:layout_height="30dp"
-        android:layout_gravity="center"
-        android:alpha="0.7"
-        android:background="@drawable/text_background"
-        android:ems="10"
-        android:gravity="center_horizontal"
-        android:hint="@string/strTargetScore"
-        android:inputType="number"
-        android:textAlignment="center" />
 
     <Space
         android:layout_width="match_parent"
