@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="iWidth">50dp</dimen>
+    <dimen name="dpValueOfSpace">4dp</dimen>
 </resources>
