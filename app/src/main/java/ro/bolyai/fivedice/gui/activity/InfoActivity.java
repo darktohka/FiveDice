@@ -28,9 +28,6 @@ public class InfoActivity extends AppCompatActivity {
         this.imgFiveDice = findViewById(R.id.imgFiveDice);
         this.txtvInfoOut=findViewById(R.id.txtvInfoOut);
 
-        String strInfoOut="Valami volt aztan az lett es volt az is meg az is ami jo volt meg minden jo igen ez nagyon fasza";
-
-        this.txtvInfoOut.setText(strInfoOut);
 
     }
 

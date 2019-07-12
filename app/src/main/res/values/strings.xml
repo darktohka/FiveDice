@@ -27,6 +27,22 @@
     <string name="strPlayerPvEPoint">PvE Point</string>
     <string name="computer_player_name">The Computer</string>
     <string name="strInfo">Informations</string>
+    <string name="strInfoOut">Authors:\n
+This game was created by the FiveDice Developer Team. A team of four members:\n
+-\tTurony Evelin\n
+-\tBabos Dávid\n
+-\tDeé Lukács András Gergely\n
+-\tDerzsi Dániel\n
+This project was created in the frame of an Erasmus program, this is our final dissertation.\n
+Project informations:\n
+This project is a simple distractive game called FiveDive where every player has 5 dices with which they have to reach a given score threshold.\n\n
+Gameplay:\n
+In the FiveDice game there is two game modes you can choose from:\n
+-\tPlayer versus Player – where two players can play against each other\n
+-\tPlayer versus AI – where a player can play against the computer\n
+In every turn each player has 3 rounds to throw the dices. After the first throw the players can decide which dices they want to throw again by keeping them or discarding them. After the 3 throws the points will be added from the dices and that will be the players final score.\n
+When one of the players reach the given score threshold and both player has same rounds the game will end and the player with the biggest score will be the winner.\n
+The gameplay will be made more exciting by the addition of sound effects and animations. </string>
 
     <!-- Items of the gamemode selection spinner -->
     <string-array name="gamemodes">
