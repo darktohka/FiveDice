@@ -672,6 +672,7 @@ public class GameActivity extends AppCompatActivity {
         }
 
         // Run our dice roll animation!
+        timerHandler.removeCallbacksAndMessages(null);
         timerHandler.postDelayed(new Runnable() {
             // Our dice will be rolled 10 times in a row.
             private int count = 10;
@@ -691,7 +692,7 @@ public class GameActivity extends AppCompatActivity {
                     return;
                 }
 
-                if (count != 0) {
+                if (count > 0) {
                     // We need to roll again!
                     timerHandler.postDelayed(this, 75);
                 } else {
@@ -866,6 +867,7 @@ public class GameActivity extends AppCompatActivity {
         btnRoll.setEnabled(false);
 
         // Roll dice in 0.5 seconds.
+        timerHandler.removeCallbacksAndMessages(null);
         timerHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -882,6 +884,7 @@ public class GameActivity extends AppCompatActivity {
     public void aiStartLocking() {
         // We will lock one dice every 0.5 seconds.
 
+        timerHandler.removeCallbacksAndMessages(null);
         timerHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
