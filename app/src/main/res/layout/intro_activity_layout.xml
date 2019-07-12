@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
+    android:background="@drawable/background"
     android:orientation="vertical"
     tools:context=".gui.activity.IntroActivity">
 
@@ -30,7 +30,7 @@
         android:layout_width="255dp"
         android:layout_height="30dp"
         android:background="@drawable/text_background"
-        android:alpha="0.7"
+        android:alpha="0.85"
         android:textAlignment="center"
         android:layout_gravity="center" />
 
@@ -43,7 +43,7 @@
         android:layout_width="255dp"
         android:layout_height="30dp"
         android:layout_gravity="center"
-        android:alpha="0.7"
+        android:alpha="0.85"
         android:background="@drawable/text_background"
         android:textAlignment="center" />
 
@@ -56,7 +56,7 @@
         android:layout_width="255dp"
         android:layout_height="30dp"
         android:layout_gravity="center"
-        android:alpha="0.7"
+        android:alpha="0.85"
         android:background="@drawable/text_background"
         android:ems="10"
         android:gravity="center_horizontal"
@@ -73,7 +73,7 @@
         android:layout_width="255dp"
         android:layout_height="30dp"
         android:layout_gravity="center"
-        android:alpha="0.7"
+        android:alpha="0.85"
         android:background="@drawable/text_background"
         android:ems="10"
         android:gravity="center_horizontal"
