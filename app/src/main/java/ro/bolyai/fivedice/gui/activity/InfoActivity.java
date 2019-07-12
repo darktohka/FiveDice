@@ -16,7 +16,7 @@ public class InfoActivity extends AppCompatActivity {
     //region 1. Decl and Init
     private EditText txtInfoOut;
 
-    private ImageView imgFiveDice;
+    private ImageView imgFiveDiceInfo;
     //endregion
 
     //region 2. Lifecycle
@@ -26,10 +26,11 @@ public class InfoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.info_activity_layout);
 
-        this.imgFiveDice = findViewById(R.id.imgFiveDice);
+        this.imgFiveDiceInfo = findViewById(R.id.imgInfoFiveDice);
         this.txtInfoOut=findViewById(R.id.txtvInfoOut);
 
         this.txtInfoOut.setFocusable(false);
+        //this.imgFiveDiceInfo.
 
 
     }
