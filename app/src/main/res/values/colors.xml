@@ -7,4 +7,5 @@
     <color name="colorKeepInactive">#d72934</color>
     <color name="colorWhite">#ffffff</color>
     <color name="colorButtonGradient">#691218</color>
+    <color name="black_color">#000000</color>
 </resources>
