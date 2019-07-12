@@ -26,27 +26,26 @@
     <string name="strPlayerPvPPoint">PvP Wins</string>
     <string name="strPlayerPvEPoint">PvE Wins</string>
     <string name="computer_player_name">The Computer</string>
-    <string name="strInfo">Informations</string>
-    <string name="strInfoOut">Authors:\n
-This game was created by the FiveDice Developer Team. A team of four members:\n
+    <string name="strInfo">Information</string>
+    <string name="strInfoOut">Authors:\n\n
+This game was created by the FiveDice Developer Team.\n
+A team of four members:\n
 -   Turony Evelin\n
 -   Babos Dávid\n
 -   Deé Lukács András Gergely\n
--   Derzsi Dániel\n
-This project was created in the frame of an Erasmus program, this is our final dissertation.\n
-Project informations:\n
-This project is a simple distractive game called FiveDive where every player has 5 dices
-        with which they have to reach a given score threshold.\n\n
+-   Derzsi Dániel\n\n
+This project was created as part of an Erasmus programme, this is our final dissertation.\n\n
+Project information:\n\n
+This project is a simple, yet distractive game called FiveDive. Each player has 5 dice, with which they must reach a given score threshold.\n\n
 Gameplay:\n
-In the FiveDice game there is two game modes you can choose from:\n
--   Player versus Player – where two players can play against each other\n
--   Player versus AI – where a player can play against the computer\n
-In every turn each player has 3 rounds to throw the dices. After the first throw the players
-        can decide which dices they want to throw again by keeping them or discarding them.
-        After the 3 throws the points will be added from the dices and that will be the players final score.\n
-When one of the players reach the given score threshold and both player has same rounds
-        the game will end and the player with the biggest score will be the winner.\n
-The gameplay will be made more exciting by the addition of sound effects and animations.</string>
+In our game there are two game modes you can choose from:\n
+-   Player versus Player – where two players can play against each other,\n
+-   Player versus AI – where a player can play against the computer.\n\n
+In every turn, each player has 3 rounds to throw their dice.\n\n
+After the first throw, the players can decide which dice they want to throw again, by keeping them or discarding them.\n\n
+After the 3 throws, the points will be added from the dice and that will be the player\'s final score.\n\n
+When one of the players reach the given score threshold, the game will end and the player with the biggest score will be the winner.\n\n
+The gameplay is made more exciting by the addition of sound effects and animations.</string>
 
     <!-- Items of the game mode selection spinner -->
     <string-array name="gamemodes">
@@ -69,5 +68,4 @@ The gameplay will be made more exciting by the addition of sound effects and ani
         <item>Reach 750 points</item>
         <item>Reach 1000 points</item>
     </string-array>
-
 </resources>
