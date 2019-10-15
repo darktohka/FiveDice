@@ -1,6 +1,6 @@
 package ro.bolyai.fivedice.gui.model;
 
-import android.support.v4.content.ContextCompat;
+import androidx.core.content.ContextCompat;
 import android.util.TypedValue;
 import android.widget.ProgressBar;
 import android.widget.TextView;
