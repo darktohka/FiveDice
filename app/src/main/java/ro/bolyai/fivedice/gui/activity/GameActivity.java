@@ -166,7 +166,7 @@ public class GameActivity extends AppCompatActivity {
     /**
      * A map containing all of our game sounds.
      */
-    private Map<String, MediaPlayer> sounds = new HashMap<String, MediaPlayer>();
+    private Map<String, MediaPlayer> sounds = new HashMap<>();
     //endregion
 
     //region 2. Lifecycle
@@ -864,7 +864,7 @@ public class GameActivity extends AppCompatActivity {
         intent.putExtra("winnerName", winnerName);
 
         // Save the winner's dice to the new activity.
-        if (winner.getName() == playerOne.getName()) {
+        if (winner.getName().equals(playerOne.getName())) {
             for (int i = 0; i < diceKeys.length; i++) {
                 intent.putExtra(diceKeys[i], firstDice.get(i));
             }
